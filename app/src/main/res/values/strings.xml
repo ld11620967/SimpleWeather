@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">简约天气</string>
+    <string name="slogan">简约天气，简约而不简单</string>
+    <string name="about_bottom_text">Copyright © 2017 Nilin.\nAll Rights Reserved.</string>
+
+    <string name="file_provider">com.nilin.favoritealbums.updata</string>
+
+    <string name="pref_title_display_name">选择城市</string>
+    <string name="pref_default_display_name">上海</string>
+
+    <string name="pref_title_social_recommendations">开启自动定位</string>
+    <string name="pref_description_social_recommendations">开启自动定位功能需打开GPS</string>
+
+    <string name="pref_title_add_friends_to_messages">自动更新时间</string>
+    <string-array name="pref_example_list_titles">
+        <item>6小时</item>
+        <item>12小时</item>
+        <item>永不</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+</resources>
