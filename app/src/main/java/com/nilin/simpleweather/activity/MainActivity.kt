@@ -1,34 +1,26 @@
 package com.nilin.simpleweather.activity
 
-
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
 
-import com.google.gson.Gson
+import com.nilin.retrofit2_rxjava2_demo.Api
 import com.nilin.simpleweather.R
-import com.nilin.simpleweather.gson.Weather
+import com.nilin.simpleweather.model.Weather
 import com.nilin.simpleweather.utils.ActivityCollector
-import com.nilin.simpleweather.utils.HttpUtil
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
-import org.json.JSONException
-import org.json.JSONObject
-
-import java.io.IOException
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.Calendar
-
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.Response
 
 
 class MainActivity : Activity() {
@@ -40,8 +32,6 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         swipe_refresh.setColorSchemeResources(R.color.colorPrimary)
-
-
         initView()
         val intent = intent
         ActivityCollector.addActivity(this)
@@ -50,10 +40,12 @@ class MainActivity : Activity() {
         val a = intent.getIntExtra("isRefreshing", 0)
         if (a == 0) {
             swipe_refresh.isRefreshing = true
-            getWeatherData()
+            val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
+            val chosen_city = pref.getString("chosen_city", "")
+            getWeatherData(chosen_city)
         } else if (a == 1) {
             swipe_refresh.isRefreshing = true
-            isUpdataWeather()
+//            isUpdataWeather()
         }
 
         swipe_refresh.setOnRefreshListener { isUpdataWeather() }
@@ -72,99 +64,133 @@ class MainActivity : Activity() {
         }
     }
 
-    fun getWeatherData() {
-        val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
-        val chosen_city = pref.getString("chosen_city", "")
-        val weatherUrl = "https://free-api.heweather.com/v5/weather?city=$chosen_city&key=bc0418b57b2d4918819d3974ac1285d9"
-        HttpUtil.sendOkHttpRequest(weatherUrl, object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                runOnUiThread {
-                    DisplayToast("获取最新天气失败")
-                    swipe_refresh.isRefreshing = false
-                }
-            }
+    protected fun getWeatherData(chosen_city:String) {
+        val api = Api.Factory.create()
 
-            @Throws(IOException::class)
-            override fun onResponse(call: Call, response: Response) {
-                val json = response.body()!!.string()
-                var jsonObject: JSONObject? = null
-                val editor = getSharedPreferences("weather_pref", Context.MODE_PRIVATE).edit()
-                var i = 0
-                try {
-                    jsonObject = JSONObject(json)
-                    val jsonArray = jsonObject!!.getJSONArray("HeWeather5")
-                    val weatherContent = jsonArray.getJSONObject(0).toString()
-                    val weather = Gson().fromJson(weatherContent, Weather::class.java)
-                    if ("no more requests" != weather!!.status) {
-                        editor.putString("city", weather!!.basic.city)
-                        editor.putString("updata_time", weather!!.basic.update.loc)
-                        editor.putString("temperature", weather!!.now.temperature)
-                        editor.putString("now_info", weather!!.now.more.info)
-
-                        for (forecast in weather!!.forecastList) {
-                            i = i + 1
-                            val format = SimpleDateFormat("yyyy-MM-dd")
-                            val c = Calendar.getInstance()
-                            try {
-                                c.time = format.parse(forecast.date)
-                            } catch (e: ParseException) {
-                                e.printStackTrace()
-                            }
-
-                            var dayForWeek = ""
-                            if (c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
-                                dayForWeek = "周日"
-                            } else if (c.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
-                                dayForWeek = "周一"
-                            } else if (c.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) {
-                                dayForWeek = "周二"
-                            } else if (c.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) {
-                                dayForWeek = "周三"
-                            } else if (c.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY) {
-                                dayForWeek = "周四"
-                            } else if (c.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
-                                dayForWeek = "周五"
-                            } else if (c.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
-                                dayForWeek = "周六"
-                            }
-
-                            editor.putString("date" + i, dayForWeek)
-                            editor.putString("forecast_info" + i, forecast.more.info)
-                            editor.putInt("temperature_max" + i, forecast.temperature.max)
-                            editor.putInt("temperature_min" + i, forecast.temperature.min)
-                            editor.commit()
-                        }
-                        runOnUiThread {
-                            val isLatest_pref = getSharedPreferences("isLatest_pref", Context.MODE_PRIVATE)
-                            val Latest_city = isLatest_pref.getString("Latest_city", "init")
-                            val updata_time_pref = getSharedPreferences("weather_pref", Context.MODE_PRIVATE)
-                            val city = updata_time_pref.getString("city", "init")
-
-                            if (weather != null && "ok" == weather!!.status || Latest_city != city) {
-                                changeWeatherView()
-                                lineview.invalidate()
-                                DisplayToast("刷新成功")
-                                val editor = getSharedPreferences("isLatest_pref", Context.MODE_PRIVATE).edit()
-                                editor.putString("Latest_time", weather!!.basic.update.loc)
-                                editor.putString("Latest_city", weather!!.basic.city)
-                                editor.commit()
-                            } else {
-                            }
-                            swipe_refresh.isRefreshing = false
-                        }
-                    } else {
-                        runOnUiThread {
-                            swipe_refresh.isRefreshing = false
-                            DisplayToast("总请求过多，请明天再试")
-                        }
-                    }
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-
-            }
-        })
+        api.getData(chosen_city)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({
+                    weather ->
+                    parseResult(weather)
+                }, {
+                    _ ->
+                    //                    loadError()
+//                    loadFinish()
+                })
     }
+
+    fun parseResult(weather: Weather) {
+        if (weather.msg) {
+            DisplayToast("获取最新天气失败")
+        } else {
+
+            val editor = getSharedPreferences("weather_pref", Context.MODE_PRIVATE).edit()
+            editor.putString("city", weather!!.result[0].city)
+            editor.putString("updata_time", weather!!.result[0].updateTime)
+            editor.putString("temperature",weather!!.result[0].temperature)
+            editor.putString("now_info", weather!!.result[0].weather)
+            Log.i("1111",weather!!.result[0].city)
+//            loadSuccess(weather.result)
+        }
+//        loadFinish()
+    }
+
+
+//    fun getWeatherData() {
+//        val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
+//        val chosen_city = pref.getString("chosen_city", "")
+//        val weatherUrl = "http://apicloud.mob.com/v1/weather/query?key=1d47f9f5e9be8&city=$chosen_city"
+//        HttpUtil.sendOkHttpRequest(weatherUrl, object : Callback {
+//            override fun onFailure(call: Call, e: IOException) {
+//                runOnUiThread {
+//                    DisplayToast("获取最新天气失败")
+//                    swipe_refresh.isRefreshing = false
+//                }
+//            }
+//
+//            @Throws(IOException::class)
+//            override fun onResponse(call: Call, response: Response) {
+//                val json = response.body()!!.string()
+//                var jsonObject: JSONObject? = null
+//                val editor = getSharedPreferences("weather_pref", Context.MODE_PRIVATE).edit()
+//                var i = 0
+//                try {
+//                    jsonObject = JSONObject(json)
+//                    val jsonArray = jsonObject!!.getJSONArray()
+//                    val weatherContent = jsonArray.getJSONObject(0).toString()
+//                    val api = Gson().fromJson(weatherContent, Api::class.java)
+//                    if ("no more requests" != api!!.msg) {
+//                        editor.putString("city", weather!!.basic.city)
+//                        editor.putString("updata_time", weather!!.basic.update.loc)
+//                        editor.putString("temperature", weather!!.now.temperature)
+//                        editor.putString("now_info", weather!!.now.more.info)
+
+
+//                        for (forecast in weather!!.forecastList) {
+//                            i = i + 1
+//                            val format = SimpleDateFormat("yyyy-MM-dd")
+//                            val c = Calendar.getInstance()
+//                            try {
+//                                c.time = format.parse(forecast.date)
+//                            } catch (e: ParseException) {
+//                                e.printStackTrace()
+//                            }
+//
+//                            var dayForWeek = ""
+//                            if (c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+//                                dayForWeek = "周日"
+//                            } else if (c.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+//                                dayForWeek = "周一"
+//                            } else if (c.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) {
+//                                dayForWeek = "周二"
+//                            } else if (c.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) {
+//                                dayForWeek = "周三"
+//                            } else if (c.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY) {
+//                                dayForWeek = "周四"
+//                            } else if (c.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
+//                                dayForWeek = "周五"
+//                            } else if (c.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
+//                                dayForWeek = "周六"
+//                            }
+//
+//                            editor.putString("date" + i, dayForWeek)
+//                            editor.putString("forecast_info" + i, forecast.more.info)
+//                            editor.putInt("temperature_max" + i, forecast.temperature.max)
+//                            editor.putInt("temperature_min" + i, forecast.temperature.min)
+//                            editor.commit()
+//                        }
+//                        runOnUiThread {
+//                            val isLatest_pref = getSharedPreferences("isLatest_pref", Context.MODE_PRIVATE)
+//                            val Latest_city = isLatest_pref.getString("Latest_city", "init")
+//                            val updata_time_pref = getSharedPreferences("weather_pref", Context.MODE_PRIVATE)
+//                            val city = updata_time_pref.getString("city", "init")
+//
+//                            if (weather != null && "ok" == weather!!.status || Latest_city != city) {
+//                                changeWeatherView()
+//                                lineview.invalidate()
+//                                DisplayToast("刷新成功")
+//                                val editor = getSharedPreferences("isLatest_pref", Context.MODE_PRIVATE).edit()
+//                                editor.putString("Latest_time", weather!!.basic.update.loc)
+//                                editor.putString("Latest_city", weather!!.basic.city)
+//                                editor.commit()
+//                            } else {
+//                            }
+//                            swipe_refresh.isRefreshing = false
+//                        }
+//                    } else {
+//                        runOnUiThread {
+//                            swipe_refresh.isRefreshing = false
+//                            DisplayToast("总请求过多，请明天再试")
+//                        }
+//                    }
+//                } catch (e: JSONException) {
+//                    e.printStackTrace()
+//                }
+//
+//            }
+//        })
+//    }
 
     fun changeWeatherView() {
         val pref = getSharedPreferences("weather_pref", Context.MODE_PRIVATE)
@@ -172,8 +198,6 @@ class MainActivity : Activity() {
         val updata_time1 = pref.getString("updata_time", "")
         val temperature1 = pref.getString("temperature", "")
         val now_info = pref.getString("now_info", "")
-
-//        val weather_now = findViewById(R.id.weather_now_data) as RelativeLayout
 
         if (now_info == "晴" || now_info!!.contains("风") || now_info == "平静") {
             weather_now!!.setBackgroundResource(R.drawable.weather_sunny_bg)
@@ -469,7 +493,9 @@ class MainActivity : Activity() {
             val s2 = System.currentTimeMillis()//得到当前的毫秒
             val minutes_passed = (s2 - s1) / 1000 / 60
             if (minutes_passed > 60) {
-                getWeatherData()
+                val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
+                val chosen_city = pref.getString("chosen_city", "")
+                getWeatherData(chosen_city)
             } else {
                 changeWeatherView()
                 DisplayToast("已是最新天气")

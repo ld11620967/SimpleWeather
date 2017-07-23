@@ -38,7 +38,6 @@ class SplashActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
         mHandler.sendEmptyMessageDelayed(GO_HOME, TIME.toLong())
-//        textView = findViewById(R.id.welcomeText) as TextView
         textAnimation = AnimationUtils.loadAnimation(this, R.anim.alpha_anim)
         welcomeText.startAnimation(textAnimation)
     }
