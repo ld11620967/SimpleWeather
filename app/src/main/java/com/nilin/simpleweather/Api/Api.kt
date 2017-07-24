@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 /**
@@ -16,10 +16,8 @@ import retrofit2.http.Path
  */
 interface Api {
 
-    @GET("{city}")
-    fun getData(@Path("city") type: String): Observable<Weather>
-
-
+    @GET("v1/weather/query?key=1d47f9f5e9be8")
+    fun getData(@Query("city") city: String): Observable<Weather>
 
     companion object Factory{
         fun create():Api {
@@ -34,7 +32,7 @@ interface Api {
                     .client(client)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl("http://apicloud.mob.com/v1/weather/query?key=appkey&city=")
+                    .baseUrl("http://apicloud.mob.com/")
                     .build()
 
             return retrofit.create(Api::class.java)

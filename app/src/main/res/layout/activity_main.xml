@@ -21,7 +21,7 @@
                 android:layout_height="0dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_weight="5">
+                android:layout_weight="4.5">
 
                 <ImageView
                     android:id="@+id/settings_imv"
@@ -125,7 +125,7 @@
                         android:paddingTop="3dp">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="80dp"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
 
@@ -140,8 +140,8 @@
 
                             <ImageView
                                 android:id="@+id/weather_info_icon1"
-                                android:layout_width="100dp"
-                                android:layout_height="30dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:layout_gravity="center_horizontal" />
 
                             <TextView
@@ -150,12 +150,11 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:maxLines="1"
-                                android:textColor="#000000"
-                                android:textSize="12dp" />
+                                android:textColor="#000000" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="80dp"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
 
@@ -170,8 +169,8 @@
 
                             <ImageView
                                 android:id="@+id/weather_info_icon2"
-                                android:layout_width="100dp"
-                                android:layout_height="30dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:layout_gravity="center_horizontal" />
 
                             <TextView
@@ -180,12 +179,11 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:maxLines="1"
-                                android:textColor="#000000"
-                                android:textSize="12dp" />
+                                android:textColor="#000000" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="80dp"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
 
@@ -199,8 +197,8 @@
 
                             <ImageView
                                 android:id="@+id/weather_info_icon3"
-                                android:layout_width="100dp"
-                                android:layout_height="30dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:layout_gravity="center_horizontal" />
 
                             <TextView
@@ -209,12 +207,11 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:maxLines="1"
-                                android:textColor="#000000"
-                                android:textSize="12dp" />
+                                android:textColor="#000000" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="80dp"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
 
@@ -228,8 +225,8 @@
 
                             <ImageView
                                 android:id="@+id/weather_info_icon4"
-                                android:layout_width="100dp"
-                                android:layout_height="30dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:layout_gravity="center_horizontal" />
 
                             <TextView
@@ -238,12 +235,11 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:maxLines="1"
-                                android:textColor="#000000"
-                                android:textSize="12dp" />
+                                android:textColor="#000000" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="80dp"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
 
@@ -257,8 +253,8 @@
 
                             <ImageView
                                 android:id="@+id/weather_info_icon5"
-                                android:layout_width="100dp"
-                                android:layout_height="30dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:layout_gravity="center_horizontal" />
 
                             <TextView
@@ -267,12 +263,11 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:maxLines="1"
-                                android:textColor="#000000"
-                                android:textSize="12dp" />
+                                android:textColor="#000000" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="80dp"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
 
@@ -286,8 +281,8 @@
 
                             <ImageView
                                 android:id="@+id/weather_info_icon6"
-                                android:layout_width="100dp"
-                                android:layout_height="30dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:layout_gravity="center_horizontal" />
 
                             <TextView
@@ -296,12 +291,11 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:maxLines="1"
-                                android:textColor="#000000"
-                                android:textSize="12dp" />
+                                android:textColor="#000000" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="80dp"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
 
@@ -315,8 +309,8 @@
 
                             <ImageView
                                 android:id="@+id/weather_info_icon7"
-                                android:layout_width="100dp"
-                                android:layout_height="30dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:layout_gravity="center_horizontal" />
 
                             <TextView
@@ -325,20 +319,103 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:maxLines="1"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/weather8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
                                 android:textColor="#000000"
-                                android:textSize="12dp" />
+                                android:textSize="15dp" />
+
+                            <ImageView
+                                android:id="@+id/weather_info_icon8"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="center_horizontal" />
+
+                            <TextView
+                                android:id="@+id/weather_info8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:maxLines="1"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/weather9"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:textColor="#000000"
+                                android:textSize="15dp" />
+
+                            <ImageView
+                                android:id="@+id/weather_info_icon9"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="center_horizontal" />
+
+                            <TextView
+                                android:id="@+id/weather_info9"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:maxLines="1"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/weather10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:textColor="#000000"
+                                android:textSize="15dp" />
+
+                            <ImageView
+                                android:id="@+id/weather_info_icon10"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="center_horizontal" />
+
+                            <TextView
+                                android:id="@+id/weather_info10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:maxLines="1"
+                                android:textColor="#000000" />
                         </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="2">
+                        android:layout_weight="3">
 
-                        <com.nilin.simpleweather.activity.LineView
-                            android:id="@+id/lineview"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                        <!--<com.nilin.simpleweather.activity.LineView-->
+                            <!--android:id="@+id/lineview"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent" />-->
                     </LinearLayout>
 
                 </LinearLayout>

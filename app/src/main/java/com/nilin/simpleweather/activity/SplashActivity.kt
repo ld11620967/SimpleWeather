@@ -3,7 +3,6 @@ package com.nilin.simpleweather.activity
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -14,7 +13,6 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 
 import com.nilin.simpleweather.R
@@ -23,8 +21,6 @@ import kotlinx.android.synthetic.main.activity_welcome.*
 
 
 class SplashActivity : Activity() {
-
-//    internal var textView: TextView
 
     private var textAnimation: Animation? = null
 
@@ -44,8 +40,8 @@ class SplashActivity : Activity() {
 
     fun accessApplication() {
         val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
-        val chosen_city = pref.getString("chosen_city", "")
-        if (chosen_city == "") {
+        val city = pref.getString("city", "")
+        if (city == "") {
             val et = EditText(this)
             val dialog = AlertDialog.Builder(this, AlertDialog.THEME_HOLO_LIGHT)
                     .setTitle("请填写所在城市")
@@ -65,7 +61,7 @@ class SplashActivity : Activity() {
                         return
                     } else if (useArrayUtils(all_city, et.text.toString()) == true) {
                         val editor = getSharedPreferences("settings_pref", Context.MODE_PRIVATE).edit()
-                        editor.putString("chosen_city", et.text.toString())
+                        editor.putString("city", et.text.toString())
                         editor.commit()
                         dialog.dismiss()
                         val intent = Intent(this@SplashActivity, MainActivity::class.java)
