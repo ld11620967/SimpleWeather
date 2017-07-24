@@ -109,7 +109,7 @@ public class SettingsActivity extends AppCompatActivity {
                     return;
                 } else if (SplashActivity.Companion.useArrayUtils(all_city, et.getText().toString()) == true) {
                     SharedPreferences.Editor editor = getSharedPreferences("settings_pref", MODE_PRIVATE).edit();
-                    editor.putString("chosen_city", et.getText().toString());
+                    editor.putString("city", et.getText().toString());
                     editor.commit();
                     dialog.dismiss();
                     Intent intent = new Intent(SettingsActivity.this, MainActivity.class);

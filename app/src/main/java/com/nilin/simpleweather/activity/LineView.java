@@ -21,9 +21,6 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class LineView extends View {
 
-
-    private static final String TAG = "test";
-
     /**
      * view的总高度
      */
@@ -37,7 +34,7 @@ public class LineView extends View {
     /**
      * 温度字体大小
      */
-    private int mTempTextSize = 35;
+    private int mTempTextSize = 40;
 
     /**
      * 温度字体颜色
@@ -47,12 +44,12 @@ public class LineView extends View {
     /**
      * 线的宽度
      */
-    private int mWeaLineWidth = 5;
+    private int mWeaLineWidth = 7;
 
     /**
      * 圆点的半径
      */
-    private int mWeaDotRadius = 7;
+    private int mWeaDotRadius = 8;
 
     /**
      * 画圆圈的画笔与画线的笔
@@ -69,12 +66,12 @@ public class LineView extends View {
     /**
      * 文字和点的间距
      */
-    private int mTextDotDistance = 26;
+    private int mTextDotDistance = 30;
 
     /**
      * 坐标点温度文字偏移量
      */
-    private static final int POINT_TEXT_OFFSET = 14;
+    private static final int POINT_TEXT_OFFSET = 18;
 
     /**
      * 最高温集合中温度差
@@ -308,35 +305,25 @@ public class LineView extends View {
 
         SharedPreferences pref = getContext().getSharedPreferences("weather_pref", MODE_PRIVATE);
 
-        int a1 = pref.getInt("temperature_max1", 0);
-        int a2 = pref.getInt("temperature_max2", 0);
-        int a3 = pref.getInt("temperature_max3", 0);
-        int a4 = pref.getInt("temperature_max4", 0);
-        int a5 = pref.getInt("temperature_max5", 0);
-        int a6 = pref.getInt("temperature_max6", 0);
-        int a7 = pref.getInt("temperature_max7", 0);
-        int b1 = pref.getInt("temperature_min1", 0);
-        int b2 = pref.getInt("temperature_min2", 0);
-        int b3 = pref.getInt("temperature_min3", 0);
-        int b4 = pref.getInt("temperature_min4", 0);
-        int b5 = pref.getInt("temperature_min5", 0);
-        int b6 = pref.getInt("temperature_min6", 0);
-        int b7 = pref.getInt("temperature_min7", 0);
+        mHighs.add(pref.getInt("temperature_max1", 0));
+        mHighs.add(pref.getInt("temperature_max2", 0));
+        mHighs.add(pref.getInt("temperature_max3", 0));
+        mHighs.add(pref.getInt("temperature_max4", 0));
+        mHighs.add(pref.getInt("temperature_max5", 0));
+        mHighs.add(pref.getInt("temperature_max6", 0));
+        mHighs.add(pref.getInt("temperature_max7", 0));
+        mHighs.add(pref.getInt("temperature_max8", 0));
+        mHighs.add(pref.getInt("temperature_max9", 0));
 
-        mHighs.add(a1);
-        mHighs.add(a2);
-        mHighs.add(a3);
-        mHighs.add(a4);
-        mHighs.add(a5);
-        mHighs.add(a6);
-        mHighs.add(a7);
-        mLows.add(b1);
-        mLows.add(b2);
-        mLows.add(b3);
-        mLows.add(b4);
-        mLows.add(b5);
-        mLows.add(b6);
-        mLows.add(b7);
+        mLows.add(pref.getInt("temperature_min1", 0));
+        mLows.add(pref.getInt("temperature_min2", 0));
+        mLows.add(pref.getInt("temperature_min3", 0));
+        mLows.add(pref.getInt("temperature_min4", 0));
+        mLows.add(pref.getInt("temperature_min5", 0));
+        mLows.add(pref.getInt("temperature_min6", 0));
+        mLows.add(pref.getInt("temperature_min7", 0));
+        mLows.add(pref.getInt("temperature_min8", 0));
+        mLows.add(pref.getInt("temperature_min9", 0));
 
         int aMax = Collections.max(mHighs);
         int aMin = Collections.min(mHighs);
