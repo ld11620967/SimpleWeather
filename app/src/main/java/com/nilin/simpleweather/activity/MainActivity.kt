@@ -77,8 +77,7 @@ class MainActivity : Activity() {
                     parseResult(weather)
                 }, {
                     _ ->
-                    //loadError()
-                    //loadFinish()
+
                 })
     }
 
@@ -120,13 +119,6 @@ class MainActivity : Activity() {
         var temperature1 = pref.getString("temperature", "")
         var now_info = pref.getString("now_info", "")
 
-        var temperature_max = pref.getInt("temperature_max1", 0)
-        var temperature_min = pref.getInt("temperature_min1", 0)
-
-        Log.i("temperature_max", temperature_max.toString())
-        Log.i("temperature_min", temperature_min.toString())
-
-
         if (now_info == "晴") {
             weather_now.setBackgroundResource(R.drawable.weather_sunny_bg)
         } else if (now_info.contains("云")) {
@@ -160,7 +152,6 @@ class MainActivity : Activity() {
         val forecast_info7 = pref.getString("forecast_info7", "")
         val forecast_info8 = pref.getString("forecast_info8", "")
         val forecast_info9 = pref.getString("forecast_info9", "")
-        val forecast_info10 = pref.getString("forecast_info10", "")
 
         weather3.text = pref.getString("date3", "")
         weather4.text = pref.getString("date4", "")
@@ -413,8 +404,9 @@ class MainActivity : Activity() {
     fun isUpdataWeather() {
         val updata_time_pref = getSharedPreferences("weather_pref", Context.MODE_PRIVATE)
         val updata_time = updata_time_pref.getString("updata_time", "")
+        Log.i("111",updata_time)
         //将字符串转为日期
-        val sdf = SimpleDateFormat("yyyyMMddHHmmsss")
+        val sdf = SimpleDateFormat("yyyyMMddHHmmss")
         var date: java.util.Date? = null
         try {
             date = sdf.parse(updata_time)
@@ -423,13 +415,15 @@ class MainActivity : Activity() {
         }
         val s1 = date!!.time//将时间转为毫秒
         val s2 = System.currentTimeMillis()//得到当前的毫秒
+        Log.i("111",s1.toString())
+        Log.i("222",s2.toString())
         val minutes_passed = (s2 - s1) / 1000 / 60
-        if (minutes_passed > 60) {
+        Log.i("333",minutes_passed.toString())
+        if (minutes_passed > 360) {
             val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
             val city = pref.getString("city", "")
             getWeatherData(city)
         } else {
-            changeWeatherView()
             DisplayToast("已是最新天气")
         }
         swipe_refresh.isRefreshing = false

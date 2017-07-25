@@ -34,7 +34,7 @@ public class LineView extends View {
     /**
      * 温度字体大小
      */
-    private int mTempTextSize = 40;
+    private int mTempTextSize = 38;
 
     /**
      * 温度字体颜色
@@ -44,12 +44,12 @@ public class LineView extends View {
     /**
      * 线的宽度
      */
-    private int mWeaLineWidth = 7;
+    private int mWeaLineWidth = 6;
 
     /**
      * 圆点的半径
      */
-    private int mWeaDotRadius = 8;
+    private int mWeaDotRadius = 7;
 
     /**
      * 画圆圈的画笔与画线的笔
