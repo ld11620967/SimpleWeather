@@ -419,7 +419,7 @@ class MainActivity : Activity() {
         Log.i("222",s2.toString())
         val minutes_passed = (s2 - s1) / 1000 / 60
         Log.i("333",minutes_passed.toString())
-        if (minutes_passed > 360) {
+        if (minutes_passed > 60) {
             val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
             val city = pref.getString("city", "")
             getWeatherData(city)
