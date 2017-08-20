@@ -27,7 +27,7 @@ class AboutActivity : AppCompatActivity() {
             getSupportActionBar()!!.setElevation(0f);
         }
         project_home_btn.setOnClickListener {
-            val uri = Uri.parse("https://github.com/ld11620967/SimpleWeather")
+            val uri = Uri.parse("http://www.apkbus.com/myspaceblog-901770.html")
             val it = Intent(Intent.ACTION_VIEW, uri)
             startActivity(it)
         }

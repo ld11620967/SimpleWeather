@@ -102,6 +102,8 @@ class MainActivity : Activity() {
                     editor.putInt("temperature_max$i", temperature_max.toInt())
                     editor.putInt("temperature_min$i", temperature_min.toInt())
                     editor.commit()
+                    Log.i("temperature_max$i",temperature_max)
+                    Log.i("temperature_min$i",temperature_min)
                 } catch (e: Exception) {
                     e.printStackTrace();
                 }
@@ -404,7 +406,6 @@ class MainActivity : Activity() {
     fun isUpdataWeather() {
         val updata_time_pref = getSharedPreferences("weather_pref", Context.MODE_PRIVATE)
         val updata_time = updata_time_pref.getString("updata_time", "")
-        Log.i("111",updata_time)
         //将字符串转为日期
         val sdf = SimpleDateFormat("yyyyMMddHHmmss")
         var date: java.util.Date? = null
@@ -415,15 +416,13 @@ class MainActivity : Activity() {
         }
         val s1 = date!!.time//将时间转为毫秒
         val s2 = System.currentTimeMillis()//得到当前的毫秒
-        Log.i("111",s1.toString())
-        Log.i("222",s2.toString())
         val minutes_passed = (s2 - s1) / 1000 / 60
-        Log.i("333",minutes_passed.toString())
         if (minutes_passed > 60) {
             val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
             val city = pref.getString("city", "")
             getWeatherData(city)
         } else {
+            changeWeatherView()
             DisplayToast("已是最新天气")
         }
         swipe_refresh.isRefreshing = false
