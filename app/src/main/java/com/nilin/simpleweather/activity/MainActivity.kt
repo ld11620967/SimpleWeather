@@ -32,7 +32,7 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        swipe_refresh.setColorSchemeResources(R.color.colorPrimary)
+//        swipe_refresh.setColorSchemeResources(R.color.colorPrimary)
         initView()
         val intent = intent
         ActivityCollector.addActivity(this)
@@ -51,6 +51,7 @@ class MainActivity : Activity() {
         }
 
         swipe_refresh.setOnRefreshListener { isUpdataWeather() }
+        Thread(lineview::postInvalidate).start()
     }
 
     fun initView() {
@@ -102,8 +103,8 @@ class MainActivity : Activity() {
                     editor.putInt("temperature_max$i", temperature_max.toInt())
                     editor.putInt("temperature_min$i", temperature_min.toInt())
                     editor.commit()
-                    Log.i("temperature_max$i",temperature_max)
-                    Log.i("temperature_min$i",temperature_min)
+                    Log.i("temperature_max$i", temperature_max)
+                    Log.i("temperature_min$i", temperature_min)
                 } catch (e: Exception) {
                     e.printStackTrace();
                 }
@@ -155,6 +156,7 @@ class MainActivity : Activity() {
         val forecast_info8 = pref.getString("forecast_info8", "")
         val forecast_info9 = pref.getString("forecast_info9", "")
 
+        weather2.text = pref.getString("date2", "")
         weather3.text = pref.getString("date3", "")
         weather4.text = pref.getString("date4", "")
         weather5.text = pref.getString("date5", "")
