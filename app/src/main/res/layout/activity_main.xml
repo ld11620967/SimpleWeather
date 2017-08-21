@@ -76,7 +76,6 @@
                         android:layout_below="@+id/temperature"
                         android:layout_marginLeft="20dp"
                         android:layout_toRightOf="@+id/city"
-                        android:text="minhang"
                         android:textColor="@android:color/white"
                         android:textSize="16dp" />
                 </LinearLayout>
@@ -100,7 +99,6 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:padding="3dp"
-                    android:text="TextView"
                     android:textColor="@android:color/white"
                     android:textSize="13dp" />
 
@@ -136,7 +134,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
-                                android:text="今天"
                                 android:textColor="#000000"
                                 android:textSize="15dp" />
 
@@ -166,7 +163,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
-                                android:text="明天"
                                 android:textColor="#000000"
                                 android:textSize="15dp" />
 

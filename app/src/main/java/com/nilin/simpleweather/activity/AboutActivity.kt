@@ -28,8 +28,8 @@ class AboutActivity : AppCompatActivity() {
         }
         project_home_btn.setOnClickListener {
             val uri = Uri.parse("http://www.apkbus.com/myspaceblog-901770.html")
-            val it = Intent(Intent.ACTION_VIEW, uri)
-            startActivity(it)
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
         }
     }
 

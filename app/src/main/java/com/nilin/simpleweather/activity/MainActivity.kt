@@ -41,8 +41,8 @@ class MainActivity : Activity() {
         val a = intent.getIntExtra("isRefreshing", 0)
         if (a == 0) {
             swipe_refresh.isRefreshing = true
-            var pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
-            var city = pref.getString("city", "")
+            val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
+            val city = pref.getString("city", "")
             getWeatherData(city)
 
         } else if (a == 1) {
@@ -68,7 +68,7 @@ class MainActivity : Activity() {
     }
 
     protected fun getWeatherData(city: String) {
-        var api = Api.Factory.create()
+        val api = Api.Factory.create()
 
         api.getData(city)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -98,29 +98,27 @@ class MainActivity : Activity() {
                     val editor = getSharedPreferences("weather_pref", Context.MODE_PRIVATE).edit()
                     editor.putString("date$i", weather.result[0].future[i - 1].week)
                     editor.putString("forecast_info$i", weather.result[0].future[i - 1].dayTime)
-                    var temperature_max = weather.result[0].future[i - 1].temperature.substring(0, 2)
-                    var temperature_min = weather.result[0].future[i - 1].temperature.substring(7, 9)
+                    val temperature_max = weather.result[0].future[i - 1].temperature.substring(0, 2)
+                    val temperature_min = weather.result[0].future[i - 1].temperature.substring(7, 9)
                     editor.putInt("temperature_max$i", temperature_max.toInt())
                     editor.putInt("temperature_min$i", temperature_min.toInt())
-                    editor.commit()
-                    Log.i("temperature_max$i", temperature_max)
-                    Log.i("temperature_min$i", temperature_min)
+                    editor.apply()
                 } catch (e: Exception) {
                     e.printStackTrace();
                 }
             }
-            editor.commit()
+            editor.apply()
             changeWeatherView()
         }
         swipe_refresh.isRefreshing = false
     }
 
     fun changeWeatherView() {
-        var pref = getSharedPreferences("weather_pref", Context.MODE_PRIVATE)
-        var city1 = pref.getString("city", "")
-        var updata_time1 = pref.getString("updata_time", "")
-        var temperature1 = pref.getString("temperature", "")
-        var now_info = pref.getString("now_info", "")
+        val pref = getSharedPreferences("weather_pref", Context.MODE_PRIVATE)
+        val city1 = pref.getString("city", "")
+        val updata_time1 = pref.getString("updata_time", "")
+        val temperature1 = pref.getString("temperature", "")
+        val now_info = pref.getString("now_info", "")
 
         if (now_info == "晴") {
             weather_now.setBackgroundResource(R.drawable.weather_sunny_bg)
@@ -137,7 +135,7 @@ class MainActivity : Activity() {
         }
 
         city.text = city1
-        var updata_time2 = updata_time1.substring(4, 12)
+        val updata_time2 = updata_time1.substring(4, 12)
         val sb = StringBuilder(updata_time2)
         sb.insert(2, "-")
         sb.insert(5, "  ")
@@ -146,24 +144,25 @@ class MainActivity : Activity() {
         temperature.text = temperature1.substring(0, temperature1.length - 1)
         info.text = now_info
 
-        val forecast_info1 = pref.getString("forecast_info1", "")
-        val forecast_info2 = pref.getString("forecast_info2", "")
-        val forecast_info3 = pref.getString("forecast_info3", "")
-        val forecast_info4 = pref.getString("forecast_info4", "")
-        val forecast_info5 = pref.getString("forecast_info5", "")
-        val forecast_info6 = pref.getString("forecast_info6", "")
-        val forecast_info7 = pref.getString("forecast_info7", "")
-        val forecast_info8 = pref.getString("forecast_info8", "")
-        val forecast_info9 = pref.getString("forecast_info9", "")
+        val forecast_info1 = pref.getString("forecast_info2", "")
+        val forecast_info2 = pref.getString("forecast_info3", "")
+        val forecast_info3 = pref.getString("forecast_info4", "")
+        val forecast_info4 = pref.getString("forecast_info5", "")
+        val forecast_info5 = pref.getString("forecast_info6", "")
+        val forecast_info6 = pref.getString("forecast_info7", "")
+        val forecast_info7 = pref.getString("forecast_info8", "")
+        val forecast_info8 = pref.getString("forecast_info9", "")
+        val forecast_info9 = pref.getString("forecast_info10", "")
 
-        weather2.text = pref.getString("date2", "")
-        weather3.text = pref.getString("date3", "")
-        weather4.text = pref.getString("date4", "")
-        weather5.text = pref.getString("date5", "")
-        weather6.text = pref.getString("date6", "")
-        weather7.text = pref.getString("date7", "")
-        weather8.text = pref.getString("date8", "")
-        weather9.text = pref.getString("date9", "")
+        weather1.text = pref.getString("date2", "")
+        weather2.text = pref.getString("date3", "")
+        weather3.text = pref.getString("date4", "")
+        weather4.text = pref.getString("date5", "")
+        weather5.text = pref.getString("date6", "")
+        weather6.text = pref.getString("date7", "")
+        weather7.text = pref.getString("date8", "")
+        weather8.text = pref.getString("date9", "")
+        weather9.text = pref.getString("date10", "")
 
         weather_info1.text = forecast_info1
         weather_info2.text = forecast_info2

@@ -22,7 +22,6 @@ import com.nilin.simpleweather.R;
 
 
 public class SettingsActivity extends AppCompatActivity {
-    private static final String TAG = "test";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,11 +105,10 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (et.getText().toString().replace(" ", "").equals("")) {
                     Toast.makeText(getApplicationContext(), "内容不能为空！", Toast.LENGTH_SHORT).show();
-                    return;
-                } else if (SplashActivity.Companion.useArrayUtils(all_city, et.getText().toString()) == true) {
+                } else if (SplashActivity.Companion.useArrayUtils(all_city, et.getText().toString())) {
                     SharedPreferences.Editor editor = getSharedPreferences("settings_pref", MODE_PRIVATE).edit();
                     editor.putString("city", et.getText().toString());
-                    editor.commit();
+                    editor.apply();
                     dialog.dismiss();
                     Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
                     intent.putExtra("isRefreshing", 0);
@@ -118,7 +116,6 @@ public class SettingsActivity extends AppCompatActivity {
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "没有这个城市！", Toast.LENGTH_SHORT).show();
-                    return;
                 }
             }
         });
