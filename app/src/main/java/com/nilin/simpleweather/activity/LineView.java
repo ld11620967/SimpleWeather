@@ -305,6 +305,7 @@ public class LineView extends View {
 
         SharedPreferences pref = getContext().getSharedPreferences("weather_pref", MODE_PRIVATE);
 
+        mHighs.add(pref.getInt("temperature_max1", 0));
         mHighs.add(pref.getInt("temperature_max2", 0));
         mHighs.add(pref.getInt("temperature_max3", 0));
         mHighs.add(pref.getInt("temperature_max4", 0));
@@ -315,6 +316,7 @@ public class LineView extends View {
         mHighs.add(pref.getInt("temperature_max9", 0));
         mHighs.add(pref.getInt("temperature_max10", 0));
 
+        mLows.add(pref.getInt("temperature_min1", 0));
         mLows.add(pref.getInt("temperature_min2", 0));
         mLows.add(pref.getInt("temperature_min3", 0));
         mLows.add(pref.getInt("temperature_min4", 0));

@@ -32,26 +32,7 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        swipe_refresh.setColorSchemeResources(R.color.colorPrimary)
         initView()
-        val intent = intent
-        ActivityCollector.addActivity(this)
-        swipe_refresh.isRefreshing = true
-
-        val a = intent.getIntExtra("isRefreshing", 0)
-        if (a == 0) {
-            swipe_refresh.isRefreshing = true
-            val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
-            val city = pref.getString("city", "")
-            getWeatherData(city)
-
-        } else if (a == 1) {
-            swipe_refresh.isRefreshing = true
-            isUpdataWeather()
-        }
-
-        swipe_refresh.setOnRefreshListener { isUpdataWeather() }
-        Thread(lineview::postInvalidate).start()
     }
 
     fun initView() {
@@ -65,20 +46,35 @@ class MainActivity : Activity() {
             val intent = Intent(this@MainActivity, SettingsActivity::class.java)
             startActivity(intent)
         }
+        val intent = intent
+        ActivityCollector.addActivity(this)
+        swipe_refresh.isRefreshing = true
+        val a = intent.getIntExtra("isRefreshing", 0)
+
+        if (a == 0) {
+            swipe_refresh.isRefreshing = true
+            val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
+            val city = pref.getString("city", "")
+            getWeatherData(city)
+        } else if (a == 1) {
+            swipe_refresh.isRefreshing = true
+            isUpdataWeather()
+        }
+        swipe_refresh.setOnRefreshListener { isUpdataWeather() }
+        Thread(lineview::postInvalidate).start()
     }
 
     protected fun getWeatherData(city: String) {
         val api = Api.Factory.create()
-
         api.getData(city)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({
                     weather ->
+
                     parseResult(weather)
                 }, {
                     _ ->
-
                 })
     }
 
@@ -96,15 +92,15 @@ class MainActivity : Activity() {
                 i = i + 1
                 try {
                     val editor = getSharedPreferences("weather_pref", Context.MODE_PRIVATE).edit()
-                    editor.putString("date$i", weather.result[0].future[i - 1].week)
-                    editor.putString("forecast_info$i", weather.result[0].future[i - 1].dayTime)
-                    val temperature_max = weather.result[0].future[i - 1].temperature.substring(0, 2)
-                    val temperature_min = weather.result[0].future[i - 1].temperature.substring(7, 9)
+                    editor.putString("date$i", future.week)
+                    editor.putString("forecast_info$i", future.dayTime)
+                    val temperature_max = future.temperature.substringBefore("°")
+                    val temperature_min = future.temperature.substringBeforeLast("°").substringAfter("/ ")
                     editor.putInt("temperature_max$i", temperature_max.toInt())
                     editor.putInt("temperature_min$i", temperature_min.toInt())
                     editor.apply()
                 } catch (e: Exception) {
-                    e.printStackTrace();
+                    e.printStackTrace()
                 }
             }
             editor.apply()
@@ -144,25 +140,27 @@ class MainActivity : Activity() {
         temperature.text = temperature1.substring(0, temperature1.length - 1)
         info.text = now_info
 
-        val forecast_info1 = pref.getString("forecast_info2", "")
-        val forecast_info2 = pref.getString("forecast_info3", "")
-        val forecast_info3 = pref.getString("forecast_info4", "")
-        val forecast_info4 = pref.getString("forecast_info5", "")
-        val forecast_info5 = pref.getString("forecast_info6", "")
-        val forecast_info6 = pref.getString("forecast_info7", "")
-        val forecast_info7 = pref.getString("forecast_info8", "")
-        val forecast_info8 = pref.getString("forecast_info9", "")
-        val forecast_info9 = pref.getString("forecast_info10", "")
+        val forecast_info1 = pref.getString("forecast_info1", "")
+        val forecast_info2 = pref.getString("forecast_info2", "")
+        val forecast_info3 = pref.getString("forecast_info3", "")
+        val forecast_info4 = pref.getString("forecast_info4", "")
+        val forecast_info5 = pref.getString("forecast_info5", "")
+        val forecast_info6 = pref.getString("forecast_info6", "")
+        val forecast_info7 = pref.getString("forecast_info7", "")
+        val forecast_info8 = pref.getString("forecast_info8", "")
+        val forecast_info9 = pref.getString("forecast_info9", "")
+        val forecast_info10 = pref.getString("forecast_info10", "")
 
-        weather1.text = pref.getString("date2", "")
-        weather2.text = pref.getString("date3", "")
-        weather3.text = pref.getString("date4", "")
-        weather4.text = pref.getString("date5", "")
-        weather5.text = pref.getString("date6", "")
-        weather6.text = pref.getString("date7", "")
-        weather7.text = pref.getString("date8", "")
-        weather8.text = pref.getString("date9", "")
-        weather9.text = pref.getString("date10", "")
+        weather1.text = pref.getString("date1", "")
+        weather2.text = pref.getString("date2", "")
+        weather3.text = pref.getString("date3", "")
+        weather4.text = pref.getString("date4", "")
+        weather5.text = pref.getString("date5", "")
+        weather6.text = pref.getString("date6", "")
+        weather7.text = pref.getString("date7", "")
+        weather8.text = pref.getString("date8", "")
+        weather9.text = pref.getString("date9", "")
+        weather10.text = pref.getString("date10", "")
 
         weather_info1.text = forecast_info1
         weather_info2.text = forecast_info2
@@ -173,6 +171,7 @@ class MainActivity : Activity() {
         weather_info7.text = forecast_info7
         weather_info8.text = forecast_info8
         weather_info9.text = forecast_info9
+        weather_info10.text = forecast_info10
 
         if (forecast_info1 == "晴") {
             weather_info_icon1.setBackgroundResource(R.drawable.weather_sunny)
@@ -370,6 +369,28 @@ class MainActivity : Activity() {
             weather_info_icon9.setBackgroundResource(R.drawable.weather_snow)
         } else {
             weather_info_icon9.setBackgroundResource(R.drawable.weather_fog)
+        }
+
+        if (forecast_info10 == "晴") {
+            weather_info_icon10.setBackgroundResource(R.drawable.weather_sunny)
+        } else if (forecast_info10.contains("云")) {
+            weather_info_icon10.setBackgroundResource(R.drawable.weather_cloudy)
+        } else if (forecast_info10 == "阴") {
+            weather_info_icon10.setBackgroundResource(R.drawable.weather_overcast_sky)
+        } else if (forecast_info10 == "小雨") {
+            weather_info_icon10.setBackgroundResource(R.drawable.weather_light_rain)
+        } else if (forecast_info10 == "中雨") {
+            weather_info_icon10.setBackgroundResource(R.drawable.weather_moderate_rain)
+        } else if (forecast_info10.contains("雷雨")) {
+            weather_info_icon10.setBackgroundResource(R.drawable.weather_thundershower)
+        } else if (forecast_info10.contains("阵雨")) {
+            weather_info_icon10.setBackgroundResource(R.drawable.weather_shower)
+        } else if (forecast_info10.contains("雨")) {
+            weather_info_icon10.setBackgroundResource(R.drawable.weather_heavy_rain)
+        } else if (forecast_info10.contains("雪")) {
+            weather_info_icon10.setBackgroundResource(R.drawable.weather_snow)
+        } else {
+            weather_info_icon10.setBackgroundResource(R.drawable.weather_fog)
         }
 
     }

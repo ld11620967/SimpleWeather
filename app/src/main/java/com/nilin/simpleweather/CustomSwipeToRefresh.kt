@@ -16,7 +16,6 @@ class CustomSwipeToRefresh(context: Context, attrs: AttributeSet) : SwipeRefresh
     private var mPrevX: Float = 0.toFloat()
 
     init {
-
         mTouchSlop = ViewConfiguration.get(context).scaledTouchSlop
     }
 
@@ -24,7 +23,6 @@ class CustomSwipeToRefresh(context: Context, attrs: AttributeSet) : SwipeRefresh
 
         when (event.action) {
             MotionEvent.ACTION_DOWN -> mPrevX = MotionEvent.obtain(event).x
-
             MotionEvent.ACTION_MOVE -> {
                 val eventX = event.x
                 val xDiff = Math.abs(eventX - mPrevX)
@@ -34,7 +32,6 @@ class CustomSwipeToRefresh(context: Context, attrs: AttributeSet) : SwipeRefresh
                 }
             }
         }
-
         return super.onInterceptTouchEvent(event)
     }
 }

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="D:\workspace\android\Demo\app\libs\ShareSDK-Core-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4b8a67071180f91e01dbfddf1605990aec20641e">
+        <dex dex="D:\workspace\android\Demo\app\build\intermediates\pre-dexed\debug\ShareSDK-Core-3.0.0_8c723a55775b0e81d901f3eef1e71b8a36f83b4f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\workspace\android\Demo\app\libs\MobCommons-2017.0905.1853.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e62ef9cdfc6c50cda42438d710b43616cd1d9321">
+        <dex dex="D:\workspace\android\Demo\app\build\intermediates\pre-dexed\debug\MobCommons-2017.0905.1853_1518a2831408a913bc9eca41ce91059b7c5c05f7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\workspace\android\Demo\app\libs\ShareSDK-QQ-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d3690b2bd060e64a831829c41b22728330d312af">
+        <dex dex="D:\workspace\android\Demo\app\build\intermediates\pre-dexed\debug\ShareSDK-QQ-3.0.0_cade1c4049722f34db7c3905124de854abf1551c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\workspace\android\Demo\app\libs\ShareSDK-SinaWeibo-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8a6cbd14d9ab3473bc83040dcf1c24322e935333">
+        <dex dex="D:\workspace\android\Demo\app\build\intermediates\pre-dexed\debug\ShareSDK-SinaWeibo-3.0.0_9cbc2367835858c9871a634f28d99e3da3d0ac2d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\workspace\android\Demo\app\libs\SMSSDK-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e78827872cd1cb48e402f1e6840f873949730b33">
+        <dex dex="D:\workspace\android\Demo\app\build\intermediates\pre-dexed\debug\SMSSDK-3.0.0_c27d08d0bb8ee608585106eb06d2dff16b2399d3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\workspace\android\Demo\app\libs\Jimu-2017.0905.1853.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c8a13d6552797dbbc8312e74973e9e9c236086e2">
+        <dex dex="D:\workspace\android\Demo\app\build\intermediates\pre-dexed\debug\Jimu-2017.0905.1853_e70b3eca49698ece1998b386e25a56f747d0d606.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\workspace\android\Demo\app\libs\CMSSDK-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="acdae28269431d4c43eca2a3a9f50a0a983afd29">
+        <dex dex="D:\workspace\android\Demo\app\build\intermediates\pre-dexed\debug\CMSSDK-1.0.0_8f862eaaa059df81e8a8d619e5cfed507ee77d87.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\workspace\android\Demo\app\libs\UMSSDK-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="231fbe63e8acf1320bdecfc8f322ea0e41027a19">
+        <dex dex="D:\workspace\android\Demo\app\build\intermediates\pre-dexed\debug\UMSSDK-1.0.0_7bbfcd0802f05f9ad028788aceccb8d88a85bd1a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\workspace\android\Demo\app\libs\ShareSDK-Wechat-Core-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="dfe96f65d638ae05dfc0b3dbe6eed38def7c1503">
+        <dex dex="D:\workspace\android\Demo\app\build\intermediates\pre-dexed\debug\ShareSDK-Wechat-Core-3.0.0_09f776f320e13ae177997ab26dce743f2e47d0a9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\workspace\android\Demo\app\libs\ShareSDK-Wechat-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d12427f6e1adf083efa9fa7e6fa6710cff030a7a">
+        <dex dex="D:\workspace\android\Demo\app\build\intermediates\pre-dexed\debug\ShareSDK-Wechat-3.0.0_2b8dbf397a192fd99f168cd6c628ff02ab98662d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\workspace\android\Demo\app\libs\ShareSDK-Facebook-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2043b2da2b8176639ee206eaeb5b55d48e9ebb6c">
+        <dex dex="D:\workspace\android\Demo\app\build\intermediates\pre-dexed\debug\ShareSDK-Facebook-3.0.0_1d5c422ff62a7ad136384a3ad0514af55caa78a3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\workspace\android\Demo\app\libs\MobTools-2017.0905.1853.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6b6ce9c5eda36d048495f211d0f8215825ff0c10">
+        <dex dex="D:\workspace\android\Demo\app\build\intermediates\pre-dexed\debug\MobTools-2017.0905.1853_fd714d93d69788459a96ea4db266cc3eb0291081.jar" />
+    </item>
+
+</items>

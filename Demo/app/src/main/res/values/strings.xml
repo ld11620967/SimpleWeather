@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">CMSSDK</string>
+	<string name="use_umssdk">以UMSSDK用户身份进入</string>
+	<string name="use_custom">以应用内用户身份进入</string>
+	<string name="use_anonymous">以“游客”身份进入</string>
+</resources>

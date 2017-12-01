@@ -1,0 +1,278 @@
+[
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_defalut_profile_setting.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_defalut_profile_setting.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_play_icon.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_play_icon.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_tab_recommend_unsel.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_tab_recommend_unsel.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_qq.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_qq.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_wechat_binded.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_wechat_binded.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_video_bg.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_video_bg.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_return_white.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_return_white.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_vcode_binded.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_vcode_binded.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_add_follow.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_add_follow.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_black_back.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_black_back.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ssdk_auth_title_back.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\ssdk_auth_title_back.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_arrow_up.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_arrow_up.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_facebook.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_facebook.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_add_friend.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_add_friend.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_wechat.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_wechat.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_add_block.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_add_block.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_old_password.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_old_password.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_ptr_arr_d_white.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_ptr_arr_d_white.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_defalut_clear.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_defalut_clear.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_white_back.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_white_back.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_send_comment_suc_bg.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_send_comment_suc_bg.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_vp_play.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_vp_play.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_defalut_gender_u.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_defalut_gender_u.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_ptr_empty.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_ptr_empty.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_vp_bar_toview.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_vp_bar_toview.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ssdk_back_arr.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\ssdk_back_arr.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_go_details.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_go_details.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_vp_bar_fullscr.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_vp_bar_fullscr.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_find_friend.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_find_friend.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_defalut_gender_m.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_defalut_gender_m.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_launcher.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ssdk_title_div.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\ssdk_title_div.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_vocde.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_vocde.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_tab_recommend_sel.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_tab_recommend_sel.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ssdk_logo.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\ssdk_logo.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_image_default_bg.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_image_default_bg.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_comment_white_msg.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_comment_white_msg.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_loading.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_loading.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_arrow_down.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_arrow_down.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_no_data.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_no_data.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_avatar.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_avatar.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_vcode.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_vcode.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_defalut_take_photo.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_defalut_take_photo.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_comment_icon.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_comment_icon.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_defalut_gender_f.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_defalut_gender_f.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_qq_binded.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_qq_binded.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_search.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_search.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_input_comment_white_pan.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_input_comment_white_pan.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_input_comment_black_pan.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_input_comment_black_pan.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_close.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_close.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_ptr_arr_u_white.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_ptr_arr_u_white.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_like_press.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_like_press.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_ptr_arr_d.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_ptr_arr_d.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_return.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_return.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_sms_country_search.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_sms_country_search.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_like_normal.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_like_normal.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_comment_black_msg.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_comment_black_msg.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_vp_pause.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_vp_pause.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\cmssdk_default_news_img_bg.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\cmssdk_default_news_img_bg.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_tab_profile_unsel.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_tab_profile_unsel.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_sinaweibo_binded.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_sinaweibo_binded.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_avatar_rect.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_avatar_rect.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_password.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_password.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_tab_profile_sel.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_tab_profile_sel.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_phone.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_phone.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_ptr_arr_u.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_ptr_arr_u.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_facebook_binded.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_facebook_binded.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_sinaweibo.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_sinaweibo.png"
+    },
+    {
+        "merged": "D:\\workspace\\android\\Demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\umssdk_default_infor_details_avatar.png",
+        "source": "D:\\workspace\\android\\Demo\\app\\src\\main\\res\\drawable-xhdpi\\umssdk_default_infor_details_avatar.png"
+    }
+]
