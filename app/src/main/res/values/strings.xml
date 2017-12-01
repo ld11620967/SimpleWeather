@@ -3,6 +3,8 @@
     <string name="slogan">简约天气，简约而不简单</string>
     <string name="about_bottom_text">Copyright © 2017 Nilin.\nAll Rights Reserved.</string>
 
+    <string name="version">1.2.3</string>
+
     <string name="file_provider">com.nilin.favoritealbums.updata</string>
 
     <string name="pref_title_display_name">选择城市</string>
