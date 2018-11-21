@@ -1,12 +1,12 @@
 package com.nilin.simpleweather.activity
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainActivity : Activity() {
@@ -64,6 +65,7 @@ class MainActivity : Activity() {
         Thread(lineview::postInvalidate).start()
     }
 
+    @SuppressLint("CheckResult")
     protected fun getWeatherData(city: String) {
         val api = Api.Factory.create()
         api.getData(city)
@@ -147,9 +149,6 @@ class MainActivity : Activity() {
         val forecast_info5 = pref.getString("forecast_info5", "")
         val forecast_info6 = pref.getString("forecast_info6", "")
         val forecast_info7 = pref.getString("forecast_info7", "")
-        val forecast_info8 = pref.getString("forecast_info8", "")
-        val forecast_info9 = pref.getString("forecast_info9", "")
-        val forecast_info10 = pref.getString("forecast_info10", "")
 
         weather1.text = pref.getString("date1", "")
         weather2.text = pref.getString("date2", "")
@@ -158,9 +157,6 @@ class MainActivity : Activity() {
         weather5.text = pref.getString("date5", "")
         weather6.text = pref.getString("date6", "")
         weather7.text = pref.getString("date7", "")
-        weather8.text = pref.getString("date8", "")
-        weather9.text = pref.getString("date9", "")
-        weather10.text = pref.getString("date10", "")
 
         weather_info1.text = forecast_info1
         weather_info2.text = forecast_info2
@@ -169,9 +165,6 @@ class MainActivity : Activity() {
         weather_info5.text = forecast_info5
         weather_info6.text = forecast_info6
         weather_info7.text = forecast_info7
-        weather_info8.text = forecast_info8
-        weather_info9.text = forecast_info9
-        weather_info10.text = forecast_info10
 
         if (forecast_info1 == "晴") {
             weather_info_icon1.setBackgroundResource(R.drawable.weather_sunny)
@@ -327,72 +320,6 @@ class MainActivity : Activity() {
             weather_info_icon7.setBackgroundResource(R.drawable.weather_fog)
         }
 
-        if (forecast_info8 == "晴") {
-            weather_info_icon8.setBackgroundResource(R.drawable.weather_sunny)
-        } else if (forecast_info8.contains("云")) {
-            weather_info_icon8.setBackgroundResource(R.drawable.weather_cloudy)
-        } else if (forecast_info8 == "阴") {
-            weather_info_icon8.setBackgroundResource(R.drawable.weather_overcast_sky)
-        } else if (forecast_info8 == "小雨") {
-            weather_info_icon8.setBackgroundResource(R.drawable.weather_light_rain)
-        } else if (forecast_info8 == "中雨") {
-            weather_info_icon8.setBackgroundResource(R.drawable.weather_moderate_rain)
-        } else if (forecast_info8.contains("雷雨")) {
-            weather_info_icon8.setBackgroundResource(R.drawable.weather_thundershower)
-        } else if (forecast_info8.contains("阵雨")) {
-            weather_info_icon8.setBackgroundResource(R.drawable.weather_shower)
-        } else if (forecast_info8.contains("雨")) {
-            weather_info_icon8.setBackgroundResource(R.drawable.weather_heavy_rain)
-        } else if (forecast_info8.contains("雪")) {
-            weather_info_icon8.setBackgroundResource(R.drawable.weather_snow)
-        } else {
-            weather_info_icon8.setBackgroundResource(R.drawable.weather_fog)
-        }
-
-        if (forecast_info9 == "晴") {
-            weather_info_icon9.setBackgroundResource(R.drawable.weather_sunny)
-        } else if (forecast_info9.contains("云")) {
-            weather_info_icon9.setBackgroundResource(R.drawable.weather_cloudy)
-        } else if (forecast_info9 == "阴") {
-            weather_info_icon9.setBackgroundResource(R.drawable.weather_overcast_sky)
-        } else if (forecast_info9 == "小雨") {
-            weather_info_icon9.setBackgroundResource(R.drawable.weather_light_rain)
-        } else if (forecast_info9 == "中雨") {
-            weather_info_icon9.setBackgroundResource(R.drawable.weather_moderate_rain)
-        } else if (forecast_info9.contains("雷雨")) {
-            weather_info_icon9.setBackgroundResource(R.drawable.weather_thundershower)
-        } else if (forecast_info9.contains("阵雨")) {
-            weather_info_icon9.setBackgroundResource(R.drawable.weather_shower)
-        } else if (forecast_info9.contains("雨")) {
-            weather_info_icon9.setBackgroundResource(R.drawable.weather_heavy_rain)
-        } else if (forecast_info9.contains("雪")) {
-            weather_info_icon9.setBackgroundResource(R.drawable.weather_snow)
-        } else {
-            weather_info_icon9.setBackgroundResource(R.drawable.weather_fog)
-        }
-
-        if (forecast_info10 == "晴") {
-            weather_info_icon10.setBackgroundResource(R.drawable.weather_sunny)
-        } else if (forecast_info10.contains("云")) {
-            weather_info_icon10.setBackgroundResource(R.drawable.weather_cloudy)
-        } else if (forecast_info10 == "阴") {
-            weather_info_icon10.setBackgroundResource(R.drawable.weather_overcast_sky)
-        } else if (forecast_info10 == "小雨") {
-            weather_info_icon10.setBackgroundResource(R.drawable.weather_light_rain)
-        } else if (forecast_info10 == "中雨") {
-            weather_info_icon10.setBackgroundResource(R.drawable.weather_moderate_rain)
-        } else if (forecast_info10.contains("雷雨")) {
-            weather_info_icon10.setBackgroundResource(R.drawable.weather_thundershower)
-        } else if (forecast_info10.contains("阵雨")) {
-            weather_info_icon10.setBackgroundResource(R.drawable.weather_shower)
-        } else if (forecast_info10.contains("雨")) {
-            weather_info_icon10.setBackgroundResource(R.drawable.weather_heavy_rain)
-        } else if (forecast_info10.contains("雪")) {
-            weather_info_icon10.setBackgroundResource(R.drawable.weather_snow)
-        } else {
-            weather_info_icon10.setBackgroundResource(R.drawable.weather_fog)
-        }
-
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
@@ -416,6 +343,7 @@ class MainActivity : Activity() {
         return super.onKeyDown(keyCode, event)
     }
 
+    @SuppressLint("ShowToast")
     fun DisplayToast(str: String) {
         if (mytoast == null) {
             mytoast = Toast.makeText(this@MainActivity, str, Toast.LENGTH_SHORT)
@@ -429,7 +357,7 @@ class MainActivity : Activity() {
         val updata_time_pref = getSharedPreferences("weather_pref", Context.MODE_PRIVATE)
         val updata_time = updata_time_pref.getString("updata_time", "")
         //将字符串转为日期
-        val sdf = SimpleDateFormat("yyyyMMddHHmmss")
+        val sdf = SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault())
         var date: java.util.Date? = null
         try {
             date = sdf.parse(updata_time)

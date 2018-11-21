@@ -1,5 +1,6 @@
 package com.nilin.simpleweather.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
@@ -96,7 +97,7 @@ public class LineView extends View {
     /**
      * 与顶部和底部的间距
      */
-    private final int mMarginTopAndrBottom = 30;
+    private final int mMarginTopAndrBottom = 40;
 
     /**
      * 每个点的间隔X轴
@@ -160,7 +161,7 @@ public class LineView extends View {
             mHighsTempest = highest + Math.abs(lowest);
         } else if (highest <= 0) {
             mHighsTempest = Math.abs(highest) - Math.abs(lowest);
-        } else if (highest >= 0 && lowest >= 0) {
+        } else {
             mHighsTempest = highest - lowest;
         }
     }
@@ -176,7 +177,7 @@ public class LineView extends View {
             mLowsTempest = highest + Math.abs(lowest);
         } else if (highest <= 0) {
             mLowsTempest = Math.abs(highest) - Math.abs(lowest);
-        } else if (highest >= 0 && lowest >= 0) {
+        } else {
             mLowsTempest = highest - lowest;
         }
     }
@@ -185,7 +186,7 @@ public class LineView extends View {
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         initPaint();
-        Paint paint = new Paint();
+        @SuppressLint("DrawAllocation") Paint paint = new Paint();
         paint.setColor(Color.WHITE);
         canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), paint);
         initView();     //刷新后初始化数据
@@ -312,9 +313,6 @@ public class LineView extends View {
         mHighs.add(pref.getInt("temperature_max5", 0));
         mHighs.add(pref.getInt("temperature_max6", 0));
         mHighs.add(pref.getInt("temperature_max7", 0));
-        mHighs.add(pref.getInt("temperature_max8", 0));
-        mHighs.add(pref.getInt("temperature_max9", 0));
-        mHighs.add(pref.getInt("temperature_max10", 0));
 
         mLows.add(pref.getInt("temperature_min1", 0));
         mLows.add(pref.getInt("temperature_min2", 0));
@@ -323,9 +321,6 @@ public class LineView extends View {
         mLows.add(pref.getInt("temperature_min5", 0));
         mLows.add(pref.getInt("temperature_min6", 0));
         mLows.add(pref.getInt("temperature_min7", 0));
-        mLows.add(pref.getInt("temperature_min8", 0));
-        mLows.add(pref.getInt("temperature_min9", 0));
-        mLows.add(pref.getInt("temperature_min10", 0));
 
         int aMax = Collections.max(mHighs);
         int aMin = Collections.min(mHighs);
