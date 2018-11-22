@@ -11,7 +11,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
 
-import com.nilin.retrofit2_rxjava2_demo.Api
+import com.nilin.simpleweather.Api.Api
 import com.nilin.simpleweather.R
 import com.nilin.simpleweather.model.Weather
 import com.nilin.simpleweather.utils.ActivityCollector
@@ -56,7 +56,7 @@ class MainActivity : Activity() {
             swipe_refresh.isRefreshing = true
             val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
             val city = pref.getString("city", "")
-            getWeatherData(city)
+            getWeatherData(city!!)
         } else if (a == 1) {
             swipe_refresh.isRefreshing = true
             isUpdataWeather()
@@ -71,12 +71,10 @@ class MainActivity : Activity() {
         api.getData(city)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe({
-                    weather ->
+                .subscribe({ weather ->
 
                     parseResult(weather)
-                }, {
-                    _ ->
+                }, { _ ->
                 })
     }
 
@@ -93,14 +91,14 @@ class MainActivity : Activity() {
             for (future in weather.result[0].future) {
                 i = i + 1
                 try {
-                    val editor = getSharedPreferences("weather_pref", Context.MODE_PRIVATE).edit()
-                    editor.putString("date$i", future.week)
-                    editor.putString("forecast_info$i", future.dayTime)
+                    val editor1 = getSharedPreferences("weather_pref", Context.MODE_PRIVATE).edit()
+                    editor1.putString("date$i", future.week)
+                    editor1.putString("forecast_info$i", future.dayTime)
                     val temperature_max = future.temperature.substringBefore("°")
                     val temperature_min = future.temperature.substringBeforeLast("°").substringAfter("/ ")
-                    editor.putInt("temperature_max$i", temperature_max.toInt())
-                    editor.putInt("temperature_min$i", temperature_min.toInt())
-                    editor.apply()
+                    editor1.putInt("temperature_max$i", temperature_max.toInt())
+                    editor1.putInt("temperature_min$i", temperature_min.toInt())
+                    editor1.apply()
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -120,7 +118,7 @@ class MainActivity : Activity() {
 
         if (now_info == "晴") {
             weather_now.setBackgroundResource(R.drawable.weather_sunny_bg)
-        } else if (now_info.contains("云")) {
+        } else if (now_info!!.contains("云")) {
             weather_now.setBackgroundResource(R.drawable.weather_cloudy_bg)
         } else if (now_info == "阴") {
             weather_now.setBackgroundResource(R.drawable.weather_overcast_bg)
@@ -133,13 +131,13 @@ class MainActivity : Activity() {
         }
 
         city.text = city1
-        val updata_time2 = updata_time1.substring(4, 12)
+        val updata_time2 = updata_time1!!.substring(4, 12)
         val sb = StringBuilder(updata_time2)
         sb.insert(2, "-")
         sb.insert(5, "  ")
         sb.insert(9, ":")
         updata_time.text = sb.toString()
-        temperature.text = temperature1.substring(0, temperature1.length - 1)
+        temperature.text = temperature1!!.substring(0, temperature1.length - 1)
         info.text = now_info
 
         val forecast_info1 = pref.getString("forecast_info1", "")
@@ -168,7 +166,7 @@ class MainActivity : Activity() {
 
         if (forecast_info1 == "晴") {
             weather_info_icon1.setBackgroundResource(R.drawable.weather_sunny)
-        } else if (forecast_info1.contains("云")) {
+        } else if (forecast_info1!!.contains("云")) {
             weather_info_icon1.setBackgroundResource(R.drawable.weather_cloudy)
         } else if (forecast_info1 == "阴") {
             weather_info_icon1.setBackgroundResource(R.drawable.weather_overcast_sky)
@@ -190,7 +188,7 @@ class MainActivity : Activity() {
 
         if (forecast_info2 == "晴") {
             weather_info_icon2.setBackgroundResource(R.drawable.weather_sunny)
-        } else if (forecast_info1.contains("云")) {
+        } else if (forecast_info2!!.contains("云")) {
             weather_info_icon2.setBackgroundResource(R.drawable.weather_cloudy)
         } else if (forecast_info2 == "阴") {
             weather_info_icon2.setBackgroundResource(R.drawable.weather_overcast_sky)
@@ -212,7 +210,7 @@ class MainActivity : Activity() {
 
         if (forecast_info3 == "晴") {
             weather_info_icon3.setBackgroundResource(R.drawable.weather_sunny)
-        } else if (forecast_info3.contains("云")) {
+        } else if (forecast_info3!!.contains("云")) {
             weather_info_icon3.setBackgroundResource(R.drawable.weather_cloudy)
         } else if (forecast_info3 == "阴") {
             weather_info_icon3.setBackgroundResource(R.drawable.weather_overcast_sky)
@@ -234,7 +232,7 @@ class MainActivity : Activity() {
 
         if (forecast_info4 == "晴") {
             weather_info_icon4.setBackgroundResource(R.drawable.weather_sunny)
-        } else if (forecast_info4.contains("云")) {
+        } else if (forecast_info4!!.contains("云")) {
             weather_info_icon4.setBackgroundResource(R.drawable.weather_cloudy)
         } else if (forecast_info4 == "阴") {
             weather_info_icon4.setBackgroundResource(R.drawable.weather_overcast_sky)
@@ -256,7 +254,7 @@ class MainActivity : Activity() {
 
         if (forecast_info5 == "晴") {
             weather_info_icon5.setBackgroundResource(R.drawable.weather_sunny)
-        } else if (forecast_info5.contains("云")) {
+        } else if (forecast_info5!!.contains("云")) {
             weather_info_icon5.setBackgroundResource(R.drawable.weather_cloudy)
         } else if (forecast_info5 == "阴") {
             weather_info_icon5.setBackgroundResource(R.drawable.weather_overcast_sky)
@@ -278,7 +276,7 @@ class MainActivity : Activity() {
 
         if (forecast_info6 == "晴") {
             weather_info_icon6.setBackgroundResource(R.drawable.weather_sunny)
-        } else if (forecast_info6.contains("云")) {
+        } else if (forecast_info6!!.contains("云")) {
             weather_info_icon6.setBackgroundResource(R.drawable.weather_cloudy)
         } else if (forecast_info6 == "阴") {
             weather_info_icon6.setBackgroundResource(R.drawable.weather_overcast_sky)
@@ -300,7 +298,7 @@ class MainActivity : Activity() {
 
         if (forecast_info7 == "晴") {
             weather_info_icon7.setBackgroundResource(R.drawable.weather_sunny)
-        } else if (forecast_info7.contains("云")) {
+        } else if (forecast_info7!!.contains("云")) {
             weather_info_icon7.setBackgroundResource(R.drawable.weather_cloudy)
         } else if (forecast_info7 == "阴") {
             weather_info_icon7.setBackgroundResource(R.drawable.weather_overcast_sky)
@@ -356,6 +354,7 @@ class MainActivity : Activity() {
     fun isUpdataWeather() {
         val updata_time_pref = getSharedPreferences("weather_pref", Context.MODE_PRIVATE)
         val updata_time = updata_time_pref.getString("updata_time", "")
+
         //将字符串转为日期
         val sdf = SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault())
         var date: java.util.Date? = null
@@ -364,13 +363,14 @@ class MainActivity : Activity() {
         } catch (e: ParseException) {
             e.printStackTrace()
         }
+
         val s1 = date!!.time//将时间转为毫秒
         val s2 = System.currentTimeMillis()//得到当前的毫秒
         val minutes_passed = (s2 - s1) / 1000 / 60
         if (minutes_passed > 60) {
             val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
             val city = pref.getString("city", "")
-            getWeatherData(city)
+            getWeatherData(city!!)
         } else {
             changeWeatherView()
             DisplayToast("已是最新天气")

@@ -1,6 +1,5 @@
-package com.nilin.retrofit2_rxjava2_demo
+package com.nilin.simpleweather.Api
 
-import android.util.Log
 import com.nilin.simpleweather.model.Weather
 import io.reactivex.Observable
 import okhttp3.OkHttpClient

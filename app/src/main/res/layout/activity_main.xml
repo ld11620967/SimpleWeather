@@ -31,10 +31,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginTop="35dp"
                     android:src="@drawable/ic_settings"
-                    tools:ignore="RtlHardcoded" />
+                    tools:ignore="ContentDescription,RtlHardcoded" />
 
                 <TextView
                     android:id="@+id/temperature"
@@ -71,7 +71,7 @@
                         android:layout_below="@+id/temperature"
                         android:text="加载中..."
                         android:textColor="@android:color/white"
-                        android:textSize="16dp"
+                        android:textSize="17dp"
                         tools:ignore="HardcodedText,SpUsage" />
 
                     <TextView
@@ -82,7 +82,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_toRightOf="@+id/city"
                         android:textColor="@android:color/white"
-                        android:textSize="16dp"
+                        android:textSize="17dp"
                         tools:ignore="RtlHardcoded,SpUsage" />
                 </LinearLayout>
 
@@ -92,11 +92,11 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="3dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_toLeftOf="@+id/updata_time"
-                    android:text="更新 : "
+                    android:text="更新: "
                     android:textColor="@android:color/white"
-                    android:textSize="13dp"
+                    android:textSize="14dp"
                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
                 <TextView
@@ -105,9 +105,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
-                    android:padding="3dp"
+                    android:padding="5dp"
                     android:textColor="@android:color/white"
-                    android:textSize="13dp"
+                    android:textSize="14dp"
                     tools:ignore="RtlHardcoded,SpUsage" />
 
             </RelativeLayout>
@@ -183,7 +183,8 @@
                                 android:id="@+id/weather_info_icon2"
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
-                                android:layout_gravity="center_horizontal" />
+                                android:layout_gravity="center_horizontal"
+                                tools:ignore="ContentDescription" />
 
                             <TextView
                                 android:id="@+id/weather_info2"
@@ -214,7 +215,8 @@
                                 android:id="@+id/weather_info_icon3"
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
-                                android:layout_gravity="center_horizontal" />
+                                android:layout_gravity="center_horizontal"
+                                tools:ignore="ContentDescription" />
 
                             <TextView
                                 android:id="@+id/weather_info3"
@@ -245,7 +247,8 @@
                                 android:id="@+id/weather_info_icon4"
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
-                                android:layout_gravity="center_horizontal" />
+                                android:layout_gravity="center_horizontal"
+                                tools:ignore="ContentDescription" />
 
                             <TextView
                                 android:id="@+id/weather_info4"
@@ -276,7 +279,8 @@
                                 android:id="@+id/weather_info_icon5"
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
-                                android:layout_gravity="center_horizontal" />
+                                android:layout_gravity="center_horizontal"
+                                tools:ignore="ContentDescription" />
 
                             <TextView
                                 android:id="@+id/weather_info5"
@@ -307,7 +311,8 @@
                                 android:id="@+id/weather_info_icon6"
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
-                                android:layout_gravity="center_horizontal" />
+                                android:layout_gravity="center_horizontal"
+                                tools:ignore="ContentDescription" />
 
                             <TextView
                                 android:id="@+id/weather_info6"
@@ -338,7 +343,8 @@
                                 android:id="@+id/weather_info_icon7"
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
-                                android:layout_gravity="center_horizontal" />
+                                android:layout_gravity="center_horizontal"
+                                tools:ignore="ContentDescription" />
 
                             <TextView
                                 android:id="@+id/weather_info7"
