@@ -3,8 +3,8 @@ package com.nilin.simpleweather
 import android.content.Context
 import android.view.MotionEvent
 import android.view.ViewConfiguration
-import android.support.v4.widget.SwipeRefreshLayout
 import android.util.AttributeSet
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 
 /**

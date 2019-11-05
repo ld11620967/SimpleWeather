@@ -12,16 +12,12 @@ import android.view.View
 import android.widget.Toast
 
 import com.nilin.simpleweather.Api.Api
+import com.nilin.simpleweather.model.NetData
 import com.nilin.simpleweather.R
-import com.nilin.simpleweather.model.Weather
 import com.nilin.simpleweather.utils.ActivityCollector
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class MainActivity : Activity() {
@@ -65,6 +61,13 @@ class MainActivity : Activity() {
         Thread(lineview::postInvalidate).start()
     }
 
+    fun isUpdataWeather() {
+        val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
+        val city = pref.getString("city", "")
+        getWeatherData(city!!)
+        swipe_refresh.isRefreshing = false
+    }
+
     @SuppressLint("CheckResult")
     protected fun getWeatherData(city: String) {
         val api = Api.Factory.create()
@@ -72,32 +75,30 @@ class MainActivity : Activity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ weather ->
-
                     parseResult(weather)
                 }, { _ ->
+
                 })
     }
 
-    fun parseResult(weather: Weather) {
-        if (weather.msg) {
+    fun parseResult(netData: NetData) {
+        if (netData.HeWeather6[0].status != "ok") {
             DisplayToast("获取最新天气失败")
         } else {
             val editor = getSharedPreferences("weather_pref", Context.MODE_PRIVATE).edit()
-            editor.putString("city", weather.result[0].city)
-            editor.putString("updata_time", weather.result[0].updateTime)
-            editor.putString("temperature", weather.result[0].temperature)
-            editor.putString("now_info", weather.result[0].weather)
+            editor.putString("city", netData.HeWeather6[0].basic.location)
+            editor.putString("updata_time", netData.HeWeather6[0].update.loc.substring(5,16))
+            editor.putString("temperature", netData.HeWeather6[0].daily_forecast[0].tmp_max)
+            editor.putString("now_info", netData.HeWeather6[0].daily_forecast[0].cond_txt_d)
 
-            for (future in weather.result[0].future) {
+            for (daily_forecast in netData.HeWeather6[0].daily_forecast) {
                 i = i + 1
                 try {
                     val editor1 = getSharedPreferences("weather_pref", Context.MODE_PRIVATE).edit()
-                    editor1.putString("date$i", future.week)
-                    editor1.putString("forecast_info$i", future.dayTime)
-                    val temperature_max = future.temperature.substringBefore("°")
-                    val temperature_min = future.temperature.substringBeforeLast("°").substringAfter("/ ")
-                    editor1.putInt("temperature_max$i", temperature_max.toInt())
-                    editor1.putInt("temperature_min$i", temperature_min.toInt())
+                    editor1.putString("date$i", daily_forecast.date.substring(5,10))
+                    editor1.putString("forecast_info$i", daily_forecast.cond_txt_d)
+                    editor1.putInt("temperature_max$i", daily_forecast.tmp_max.toInt())
+                    editor1.putInt("temperature_min$i", daily_forecast.tmp_min.toInt())
                     editor1.apply()
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -131,13 +132,8 @@ class MainActivity : Activity() {
         }
 
         city.text = city1
-        val updata_time2 = updata_time1!!.substring(4, 12)
-        val sb = StringBuilder(updata_time2)
-        sb.insert(2, "-")
-        sb.insert(5, "  ")
-        sb.insert(9, ":")
-        updata_time.text = sb.toString()
-        temperature.text = temperature1!!.substring(0, temperature1.length - 1)
+        updata_time.text = updata_time1
+        temperature.text = temperature1
         info.text = now_info
 
         val forecast_info1 = pref.getString("forecast_info1", "")
@@ -164,9 +160,9 @@ class MainActivity : Activity() {
         weather_info6.text = forecast_info6
         weather_info7.text = forecast_info7
 
-        if (forecast_info1 == "晴") {
+        if (forecast_info1!!.contains("晴")||forecast_info1.contains("风")) {
             weather_info_icon1.setBackgroundResource(R.drawable.weather_sunny)
-        } else if (forecast_info1!!.contains("云")) {
+        } else if (forecast_info1.contains("云")) {
             weather_info_icon1.setBackgroundResource(R.drawable.weather_cloudy)
         } else if (forecast_info1 == "阴") {
             weather_info_icon1.setBackgroundResource(R.drawable.weather_overcast_sky)
@@ -176,8 +172,6 @@ class MainActivity : Activity() {
             weather_info_icon1.setBackgroundResource(R.drawable.weather_moderate_rain)
         } else if (forecast_info1.contains("雷雨")) {
             weather_info_icon1.setBackgroundResource(R.drawable.weather_thundershower)
-        } else if (forecast_info1.contains("阵雨")) {
-            weather_info_icon1.setBackgroundResource(R.drawable.weather_shower)
         } else if (forecast_info1.contains("雨")) {
             weather_info_icon1.setBackgroundResource(R.drawable.weather_heavy_rain)
         } else if (forecast_info1.contains("雪")) {
@@ -186,9 +180,9 @@ class MainActivity : Activity() {
             weather_info_icon1.setBackgroundResource(R.drawable.weather_fog)
         }
 
-        if (forecast_info2 == "晴") {
+        if (forecast_info2!!.contains("晴")||forecast_info2.contains("风")) {
             weather_info_icon2.setBackgroundResource(R.drawable.weather_sunny)
-        } else if (forecast_info2!!.contains("云")) {
+        } else if (forecast_info2.contains("云")) {
             weather_info_icon2.setBackgroundResource(R.drawable.weather_cloudy)
         } else if (forecast_info2 == "阴") {
             weather_info_icon2.setBackgroundResource(R.drawable.weather_overcast_sky)
@@ -198,8 +192,6 @@ class MainActivity : Activity() {
             weather_info_icon2.setBackgroundResource(R.drawable.weather_moderate_rain)
         } else if (forecast_info2.contains("雷雨")) {
             weather_info_icon2.setBackgroundResource(R.drawable.weather_thundershower)
-        } else if (forecast_info2.contains("阵雨")) {
-            weather_info_icon2.setBackgroundResource(R.drawable.weather_shower)
         } else if (forecast_info2.contains("雨")) {
             weather_info_icon2.setBackgroundResource(R.drawable.weather_heavy_rain)
         } else if (forecast_info2.contains("雪")) {
@@ -208,9 +200,9 @@ class MainActivity : Activity() {
             weather_info_icon2.setBackgroundResource(R.drawable.weather_fog)
         }
 
-        if (forecast_info3 == "晴") {
+        if (forecast_info3!!.contains("晴")||forecast_info3.contains("风")) {
             weather_info_icon3.setBackgroundResource(R.drawable.weather_sunny)
-        } else if (forecast_info3!!.contains("云")) {
+        } else if (forecast_info3.contains("云")) {
             weather_info_icon3.setBackgroundResource(R.drawable.weather_cloudy)
         } else if (forecast_info3 == "阴") {
             weather_info_icon3.setBackgroundResource(R.drawable.weather_overcast_sky)
@@ -220,8 +212,6 @@ class MainActivity : Activity() {
             weather_info_icon3.setBackgroundResource(R.drawable.weather_moderate_rain)
         } else if (forecast_info3.contains("雷雨")) {
             weather_info_icon3.setBackgroundResource(R.drawable.weather_thundershower)
-        } else if (forecast_info3.contains("阵雨")) {
-            weather_info_icon3.setBackgroundResource(R.drawable.weather_shower)
         } else if (forecast_info3.contains("雨")) {
             weather_info_icon3.setBackgroundResource(R.drawable.weather_heavy_rain)
         } else if (forecast_info3.contains("雪")) {
@@ -230,9 +220,9 @@ class MainActivity : Activity() {
             weather_info_icon3.setBackgroundResource(R.drawable.weather_fog)
         }
 
-        if (forecast_info4 == "晴") {
+        if (forecast_info4!!.contains("晴")||forecast_info4.contains("风")) {
             weather_info_icon4.setBackgroundResource(R.drawable.weather_sunny)
-        } else if (forecast_info4!!.contains("云")) {
+        } else if (forecast_info4.contains("云")) {
             weather_info_icon4.setBackgroundResource(R.drawable.weather_cloudy)
         } else if (forecast_info4 == "阴") {
             weather_info_icon4.setBackgroundResource(R.drawable.weather_overcast_sky)
@@ -242,8 +232,6 @@ class MainActivity : Activity() {
             weather_info_icon4.setBackgroundResource(R.drawable.weather_moderate_rain)
         } else if (forecast_info4.contains("雷雨")) {
             weather_info_icon4.setBackgroundResource(R.drawable.weather_thundershower)
-        } else if (forecast_info4.contains("阵雨")) {
-            weather_info_icon4.setBackgroundResource(R.drawable.weather_shower)
         } else if (forecast_info4.contains("雨")) {
             weather_info_icon4.setBackgroundResource(R.drawable.weather_heavy_rain)
         } else if (forecast_info4.contains("雪")) {
@@ -252,9 +240,9 @@ class MainActivity : Activity() {
             weather_info_icon4.setBackgroundResource(R.drawable.weather_fog)
         }
 
-        if (forecast_info5 == "晴") {
+        if (forecast_info5!!.contains("晴")||forecast_info5.contains("风")) {
             weather_info_icon5.setBackgroundResource(R.drawable.weather_sunny)
-        } else if (forecast_info5!!.contains("云")) {
+        } else if (forecast_info5.contains("云")) {
             weather_info_icon5.setBackgroundResource(R.drawable.weather_cloudy)
         } else if (forecast_info5 == "阴") {
             weather_info_icon5.setBackgroundResource(R.drawable.weather_overcast_sky)
@@ -264,8 +252,6 @@ class MainActivity : Activity() {
             weather_info_icon5.setBackgroundResource(R.drawable.weather_moderate_rain)
         } else if (forecast_info5.contains("雷雨")) {
             weather_info_icon5.setBackgroundResource(R.drawable.weather_thundershower)
-        } else if (forecast_info5.contains("阵雨")) {
-            weather_info_icon5.setBackgroundResource(R.drawable.weather_shower)
         } else if (forecast_info5.contains("雨")) {
             weather_info_icon5.setBackgroundResource(R.drawable.weather_heavy_rain)
         } else if (forecast_info5.contains("雪")) {
@@ -274,9 +260,9 @@ class MainActivity : Activity() {
             weather_info_icon5.setBackgroundResource(R.drawable.weather_fog)
         }
 
-        if (forecast_info6 == "晴") {
+        if (forecast_info6!!.contains("晴")||forecast_info6.contains("风")) {
             weather_info_icon6.setBackgroundResource(R.drawable.weather_sunny)
-        } else if (forecast_info6!!.contains("云")) {
+        } else if (forecast_info6.contains("云")) {
             weather_info_icon6.setBackgroundResource(R.drawable.weather_cloudy)
         } else if (forecast_info6 == "阴") {
             weather_info_icon6.setBackgroundResource(R.drawable.weather_overcast_sky)
@@ -286,8 +272,6 @@ class MainActivity : Activity() {
             weather_info_icon6.setBackgroundResource(R.drawable.weather_moderate_rain)
         } else if (forecast_info6.contains("雷雨")) {
             weather_info_icon6.setBackgroundResource(R.drawable.weather_thundershower)
-        } else if (forecast_info6.contains("阵雨")) {
-            weather_info_icon6.setBackgroundResource(R.drawable.weather_shower)
         } else if (forecast_info6.contains("雨")) {
             weather_info_icon6.setBackgroundResource(R.drawable.weather_heavy_rain)
         } else if (forecast_info6.contains("雪")) {
@@ -296,9 +280,9 @@ class MainActivity : Activity() {
             weather_info_icon6.setBackgroundResource(R.drawable.weather_fog)
         }
 
-        if (forecast_info7 == "晴") {
+        if (forecast_info7!!.contains("晴")||forecast_info7.contains("风")) {
             weather_info_icon7.setBackgroundResource(R.drawable.weather_sunny)
-        } else if (forecast_info7!!.contains("云")) {
+        } else if (forecast_info7.contains("云")) {
             weather_info_icon7.setBackgroundResource(R.drawable.weather_cloudy)
         } else if (forecast_info7 == "阴") {
             weather_info_icon7.setBackgroundResource(R.drawable.weather_overcast_sky)
@@ -308,8 +292,6 @@ class MainActivity : Activity() {
             weather_info_icon7.setBackgroundResource(R.drawable.weather_moderate_rain)
         } else if (forecast_info7.contains("雷雨")) {
             weather_info_icon7.setBackgroundResource(R.drawable.weather_thundershower)
-        } else if (forecast_info7.contains("阵雨")) {
-            weather_info_icon7.setBackgroundResource(R.drawable.weather_shower)
         } else if (forecast_info7.contains("雨")) {
             weather_info_icon7.setBackgroundResource(R.drawable.weather_heavy_rain)
         } else if (forecast_info7.contains("雪")) {
@@ -349,33 +331,6 @@ class MainActivity : Activity() {
             mytoast!!.setText(str)
         }
         mytoast!!.show()
-    }
-
-    fun isUpdataWeather() {
-        val updata_time_pref = getSharedPreferences("weather_pref", Context.MODE_PRIVATE)
-        val updata_time = updata_time_pref.getString("updata_time", "")
-
-        //将字符串转为日期
-        val sdf = SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault())
-        var date: java.util.Date? = null
-        try {
-            date = sdf.parse(updata_time)
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
-
-        val s1 = date!!.time//将时间转为毫秒
-        val s2 = System.currentTimeMillis()//得到当前的毫秒
-        val minutes_passed = (s2 - s1) / 1000 / 60
-        if (minutes_passed > 60) {
-            val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
-            val city = pref.getString("city", "")
-            getWeatherData(city!!)
-        } else {
-            changeWeatherView()
-            DisplayToast("已是最新天气")
-        }
-        swipe_refresh.isRefreshing = false
     }
 
 }

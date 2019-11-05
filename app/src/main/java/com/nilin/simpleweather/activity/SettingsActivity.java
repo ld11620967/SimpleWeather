@@ -1,13 +1,12 @@
 package com.nilin.simpleweather.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class SettingsActivity extends AppCompatActivity {
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,10 +26,8 @@ public class SettingsActivity extends AppCompatActivity {
     //返回按钮点击事件
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
+        if (item.getItemId() == android.R.id.home) {
+            finish();
         }
         return true;
     }

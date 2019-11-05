@@ -4,8 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 
 import com.nilin.simpleweather.R
 import kotlinx.android.synthetic.main.activity_about.*
@@ -27,7 +27,7 @@ class AboutActivity : AppCompatActivity() {
             getSupportActionBar()!!.setElevation(0f);
         }
         project_home_btn.setOnClickListener {
-            val uri = Uri.parse("http://www.apkbus.com/myspaceblog-901770.html")
+            val uri = Uri.parse("https://github.com/ld11620967")
             val intent = Intent(Intent.ACTION_VIEW, uri)
             startActivity(intent)
         }

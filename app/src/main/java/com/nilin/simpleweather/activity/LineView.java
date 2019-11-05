@@ -22,102 +22,26 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class LineView extends View {
 
-    /**
-     * view的总高度
-     */
-    private int mViewHeight;
-
-    /**
-     * view的总宽度
-     */
-    private int mViewWidth;
-
-    /**
-     * 温度字体大小
-     */
-    private int mTempTextSize = 38;
-
-    /**
-     * 温度字体颜色
-     */
-    private int mTempTextColor = Color.BLACK;
-
-    /**
-     * 线的宽度
-     */
-    private int mWeaLineWidth = 6;
-
-    /**
-     * 圆点的半径
-     */
-    private int mWeaDotRadius = 7;
-
-    /**
-     * 画圆圈的画笔与画线的笔
-     */
-    private Paint mDotPaint;
-
-    private Paint mLinePaint;
-
-    /**
-     * 画灰色线的笔与画温度的笔
-     */
-    private TextPaint mTempPaint;
-
-    /**
-     * 文字和点的间距
-     */
-    private int mTextDotDistance = 30;
-
-    /**
-     * 坐标点温度文字偏移量
-     */
-    private static final int POINT_TEXT_OFFSET = 18;
-
-    /**
-     * 最高温集合中温度差
-     */
-    private float mHighsTempest;
-
-    /**
-     * 最低温集合中温度差
-     */
-    private int mLowsTempest;
-
-    /**
-     * 最高温数组
-     */
-    private List<Integer> mHighs;
-
-    /**
-     * 最低温数组
-     */
-    private List<Integer> mLows;
-
-    /**
-     * 与顶部和底部的间距
-     */
-    private final int mMarginTopAndrBottom = 40;
-
-    /**
-     * 每个点的间隔X轴
-     */
-    private int mInterval;
-
-    /**
-     * 第一个点的X坐标
-     */
-    private float mFristX;
-
-    /**
-     * 折线图高度（单个）
-     */
-    private float mLineHeight;
-
-    /**
-     * 调节变量
-     */
-    private int mSpace;
+    public int mViewHeight;     //view的总高度
+    public int mViewWidth;      //view的总宽度
+    public int mTempTextSize = 36;  //温度字体大小
+    public int mTempTextColor = Color.BLACK;    //温度字体颜色
+    public int mWeaLineWidth = 6;   //线的宽度
+    public int mWeaDotRadius = 7;   //圆点的半径
+    public Paint mDotPaint;     //画圆圈的画笔与画线的笔
+    public Paint mLinePaint;
+    public TextPaint mTempPaint;    //画灰色线的笔与画温度的笔
+    public int mTextDotDistance = 30;   //文字和点的间距
+    public static final int POINT_TEXT_OFFSET = 18;     //坐标点温度文字偏移量
+    public float mHighsTempest;     //最高温集合中温度差
+    public int mLowsTempest;    //最低温集合中温度差
+    public List<Integer> mHighs;    //最高温数组
+    public List<Integer> mLows;     //最低温数组
+    public final int mMarginTopAndrBottom = 35;     //与顶部和底部的间距
+    public int mInterval;      //每个点的间隔X轴
+    public float mFristX;   //第一个点的X坐标
+    public float mLineHeight;   //折线图高度（单个）
+    public int mSpace;      //调节变量
 
     public LineView(Context context) {
         this(context, null);
@@ -143,14 +67,14 @@ public class LineView extends View {
     /**
      * 计算相关大小
      */
-    private void computeSize() {
+    public void computeSize() {
         mInterval = mViewWidth / mHighs.size();
         mFristX = mInterval / 2;
-        mLineHeight = mViewHeight / 4;
-        mSpace = mViewHeight / 4;
+        mLineHeight = mViewHeight / 6;
+        mSpace = mViewHeight / 3;
     }
 
-    private int mHighsLowest;
+    public int mHighsLowest;
 
     /**
      * 设置七天中高温里面最高温与最低温
@@ -166,7 +90,7 @@ public class LineView extends View {
         }
     }
 
-    private int mLowsLowsest;
+    public int mLowsLowsest;
 
     /**
      * 设置七天中低温里面最高温与最低温
@@ -198,7 +122,7 @@ public class LineView extends View {
     /**
      * 初始化各个画笔
      */
-    private void initPaint() {
+    public void initPaint() {
         mDotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mDotPaint.setStyle(Paint.Style.FILL);
         mDotPaint.setColor(getResources().getColor(R.color.drawDot));
@@ -214,7 +138,7 @@ public class LineView extends View {
         mLinePaint.setColor(getResources().getColor(R.color.lineHigh)); //绘制高温线颜色
     }
 
-    private void drawLine(Canvas canvas) {
+    public void drawLine(Canvas canvas) {
         float highsBaseY = mLineHeight / mHighsTempest;//最高温中每隔一度对应相隔多少y坐标
         float lowsBaseY = mLineHeight / mLowsTempest;//最低温中每隔一度对应相隔多少y坐标
         float y1, y2 = 0f;//y1起点y坐标，y2 终点y坐标
@@ -254,7 +178,7 @@ public class LineView extends View {
         }
     }
 
-    private void drawDot(Canvas canvas) {
+    public void drawDot(Canvas canvas) {
         float highsBaseY = mLineHeight / mHighsTempest;//最高温中每隔一度对应相隔多少y坐标
         float lowsBaseY = mLineHeight / mLowsTempest;//最低温中每隔一度对应相隔多少y坐标
         float y = 0f;
@@ -278,7 +202,7 @@ public class LineView extends View {
     /**
      * 绘制温度（文本）
      */
-    private void drawTemp(Canvas canvas) {
+    public void drawTemp(Canvas canvas) {
         float baseY = mLineHeight / mHighsTempest;//每隔一度对应相隔多少y坐标
         float lowsBaseY = mLineHeight / mLowsTempest;//最低温中每隔一度对应相隔多少y坐标
         float y = 0f;

@@ -94,7 +94,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:layout_toLeftOf="@+id/updata_time"
-                    android:text="更新: "
+                    android:text="更新:"
                     android:textColor="@android:color/white"
                     android:textSize="14dp"
                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
