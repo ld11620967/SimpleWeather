@@ -8,10 +8,10 @@
         android:id="@+id/welcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="简约天气"
+        android:text="@string/app_name"
         android:textStyle="bold"
         android:textColor="#00ffd0"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="160dp" />

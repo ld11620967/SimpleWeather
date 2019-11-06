@@ -8,6 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 
@@ -15,8 +16,10 @@ import retrofit2.http.Query
  * Created by liangd on 2017/7/11.
  */
 interface Api {
-    @GET("s6/weather/forecast?key=0c93bf67d3f944669ae99fe715fde101")
-    fun getData(@Query("location") city: String): Observable<NetData>
+    //    @GET("s6/weather/forecast?key=0c93bf67d3f944669ae99fe715fde101")
+    @GET("s6/weather/{weather-type}?key=0c93bf67d3f944669ae99fe715fde101")
+//    fun getData(@Query("location") city: String): Observable<NetData>
+    fun getData(@Path("weather-type") weather_type: String, @Query("location") location: String): Observable<NetData>
 
     companion object Factory {
         fun create(): Api {

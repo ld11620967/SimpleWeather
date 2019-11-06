@@ -52,7 +52,9 @@ class MainActivity : Activity() {
             swipe_refresh.isRefreshing = true
             val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
             val city = pref.getString("city", "")
-            getWeatherData(city!!)
+            getNowData(city!!)
+            getForecastData(city)
+
         } else if (a == 1) {
             swipe_refresh.isRefreshing = true
             isUpdataWeather()
@@ -64,32 +66,57 @@ class MainActivity : Activity() {
     fun isUpdataWeather() {
         val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
         val city = pref.getString("city", "")
-        getWeatherData(city!!)
-        swipe_refresh.isRefreshing = false
+        getNowData(city!!)
+        getForecastData(city)
     }
 
     @SuppressLint("CheckResult")
-    protected fun getWeatherData(city: String) {
+    protected fun getNowData(city: String) {
         val api = Api.Factory.create()
-        api.getData(city)
+        api.getData("now",city)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe({ weather ->
-                    parseResult(weather)
+                .subscribe({ now ->
+                    updataNow(now)
                 }, { _ ->
 
                 })
     }
 
-    fun parseResult(netData: NetData) {
-        if (netData.HeWeather6[0].status != "ok") {
-            DisplayToast("获取最新天气失败")
+    @SuppressLint("CheckResult")
+    protected fun getForecastData(city: String) {
+        val api = Api.Factory.create()
+        api.getData("forecast",city)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ forecast ->
+                    updataForecast(forecast)
+                }, { _ ->
+
+                })
+    }
+
+    @SuppressLint("CommitPrefEdits")
+    fun updataNow(netDataNow: NetData) {
+        if (netDataNow.HeWeather6[0].status != "ok") {
+            DisplayToast("获取最新天气失败,请重试！")
         } else {
             val editor = getSharedPreferences("weather_pref", Context.MODE_PRIVATE).edit()
-            editor.putString("city", netData.HeWeather6[0].basic.location)
-            editor.putString("updata_time", netData.HeWeather6[0].update.loc.substring(5,16))
-            editor.putString("temperature", netData.HeWeather6[0].daily_forecast[0].tmp_max)
-            editor.putString("now_info", netData.HeWeather6[0].daily_forecast[0].cond_txt_d)
+            editor.putString("city", netDataNow.HeWeather6[0].basic.location)
+            editor.putString("updata_time", netDataNow.HeWeather6[0].update.loc.substring(5, 16))
+            editor.putString("temperature", netDataNow.HeWeather6[0].now.tmp)
+            editor.putString("now_info", netDataNow.HeWeather6[0].now.cond_txt)
+            editor.apply()
+            changeWeatherView()
+            swipe_refresh.isRefreshing = false
+        }
+    }
+
+    fun updataForecast(netData: NetData) {
+        if (netData.HeWeather6[0].status != "ok") {
+            DisplayToast("获取最新天气失败,请重试！")
+        } else {
+            val editor = getSharedPreferences("weather_pref", Context.MODE_PRIVATE).edit()
 
             for (daily_forecast in netData.HeWeather6[0].daily_forecast) {
                 i = i + 1
@@ -105,8 +132,8 @@ class MainActivity : Activity() {
                 }
             }
             editor.apply()
-            changeWeatherView()
         }
+        changeWeatherView()
         swipe_refresh.isRefreshing = false
     }
 
@@ -299,11 +326,9 @@ class MainActivity : Activity() {
         } else {
             weather_info_icon7.setBackgroundResource(R.drawable.weather_fog)
         }
-
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (System.currentTimeMillis() - mExitTime > 2000) {
                 DisplayToast("再按一次退出程序")
