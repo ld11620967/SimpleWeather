@@ -15,19 +15,26 @@ import com.nilin.simpleweather.Api.Api
 import com.nilin.simpleweather.model.NetData
 import com.nilin.simpleweather.R
 import com.nilin.simpleweather.utils.ActivityCollector
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.*
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
-class MainActivity : Activity() {
+class MainActivity : Activity(), CoroutineScope {
     private var mytoast: Toast? = null
     private var mExitTime: Long = 0
     var isExit = false
     var i = 0
 
+    private lateinit var job: Job
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.Main
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        job = Job()
         setContentView(R.layout.activity_main)
         initView()
     }
@@ -52,8 +59,7 @@ class MainActivity : Activity() {
             swipe_refresh.isRefreshing = true
             val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
             val city = pref.getString("city", "")
-            getNowData(city!!)
-            getForecastData(city)
+            loadData(city!!)
 
         } else if (a == 1) {
             swipe_refresh.isRefreshing = true
@@ -66,49 +72,24 @@ class MainActivity : Activity() {
     fun isUpdataWeather() {
         val pref = getSharedPreferences("settings_pref", Context.MODE_PRIVATE)
         val city = pref.getString("city", "")
-        getNowData(city!!)
-        getForecastData(city)
+        loadData(city!!)
     }
+
+    val retrofit = Retrofit.Builder()
+            .baseUrl("https://free-api.heweather.net/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(Api::class.java)
 
     @SuppressLint("CheckResult")
-    protected fun getNowData(city: String) {
-        val api = Api.Factory.create()
-        api.getData("now",city)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe({ now ->
-                    updataNow(now)
-                }, { _ ->
-
-                })
-    }
-
-    @SuppressLint("CheckResult")
-    protected fun getForecastData(city: String) {
-        val api = Api.Factory.create()
-        api.getData("forecast",city)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe({ forecast ->
-                    updataForecast(forecast)
-                }, { _ ->
-
-                })
-    }
-
-    @SuppressLint("CommitPrefEdits")
-    fun updataNow(netDataNow: NetData) {
-        if (netDataNow.HeWeather6[0].status != "ok") {
-            DisplayToast("获取最新天气失败,请重试！")
-        } else {
-            val editor = getSharedPreferences("weather_pref", Context.MODE_PRIVATE).edit()
-            editor.putString("city", netDataNow.HeWeather6[0].basic.location)
-            editor.putString("updata_time", netDataNow.HeWeather6[0].update.loc.substring(5, 16))
-            editor.putString("temperature", netDataNow.HeWeather6[0].now.tmp)
-            editor.putString("now_info", netDataNow.HeWeather6[0].now.cond_txt)
-            editor.apply()
-            changeWeatherView()
-            swipe_refresh.isRefreshing = false
+    protected fun loadData(city:String) {
+        launch {
+            val result = withContext(Dispatchers.IO) {
+                retrofit.getData("forecast",city).execute()
+            }
+            if (result.isSuccessful) {
+                updataForecast(result.body()!!)
+            }
         }
     }
 
@@ -117,6 +98,11 @@ class MainActivity : Activity() {
             DisplayToast("获取最新天气失败,请重试！")
         } else {
             val editor = getSharedPreferences("weather_pref", Context.MODE_PRIVATE).edit()
+
+            editor.putString("city", netData.HeWeather6[0].basic.location)
+            editor.putString("updata_time", netData.HeWeather6[0].update.loc.substring(5, 16))
+            editor.putString("temperature", netData.HeWeather6[0].daily_forecast[0].tmp_max)
+            editor.putString("now_info", netData.HeWeather6[0].daily_forecast[0].cond_txt_d)
 
             for (daily_forecast in netData.HeWeather6[0].daily_forecast) {
                 i = i + 1
@@ -144,9 +130,14 @@ class MainActivity : Activity() {
         val temperature1 = pref.getString("temperature", "")
         val now_info = pref.getString("now_info", "")
 
-        if (now_info == "晴") {
+        city.text = city1
+        updata_time.text = updata_time1
+        temperature.text = temperature1!!.toInt().plus(-2).toString()
+        info.text = now_info
+
+        if (now_info!!.contains("晴")||now_info.contains("风")) {
             weather_now.setBackgroundResource(R.drawable.weather_sunny_bg)
-        } else if (now_info!!.contains("云")) {
+        } else if (now_info.contains("云")) {
             weather_now.setBackgroundResource(R.drawable.weather_cloudy_bg)
         } else if (now_info == "阴") {
             weather_now.setBackgroundResource(R.drawable.weather_overcast_bg)
@@ -157,11 +148,6 @@ class MainActivity : Activity() {
         } else {
             weather_now.setBackgroundResource(R.drawable.weather_foggy_bg)
         }
-
-        city.text = city1
-        updata_time.text = updata_time1
-        temperature.text = temperature1
-        info.text = now_info
 
         val forecast_info1 = pref.getString("forecast_info1", "")
         val forecast_info2 = pref.getString("forecast_info2", "")
